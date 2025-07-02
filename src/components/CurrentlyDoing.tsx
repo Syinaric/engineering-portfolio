@@ -8,7 +8,7 @@ const hobbies = [
   'learning KiCad',
   'unclogging my 3D printer',
   "ripping my hair out because my code won't compile",
-  'brewing my third coffee of the day.'
+  'brewing my third coffee of the day'
 ];
 
 const TYPING_SPEED = 60;
@@ -48,7 +48,7 @@ const CurrentlyDoing: React.FC = () => {
   }, [display, typing, current]);
 
   return (
-    <div className="min-h-[3.5rem]">
+    <div className="min-h-[3.5rem] w-full text-center">
       <div className="text-lg text-gray-400">Currently I am probably:</div>
       <div className="text-lg text-white h-7">
         <span>{display}</span>

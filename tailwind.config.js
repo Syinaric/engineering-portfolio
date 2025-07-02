@@ -9,8 +9,8 @@ module.exports = {
         'dark-bg': '#0a0a0a',
         'dark-card': '#1a1a1a',
         'dark-border': '#2a2a2a',
-        'accent': '#3b82f6',
-        'accent-hover': '#2563eb',
+        accent: '#a259ff',
+        'accent-hover': '#7c2ae8',
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],

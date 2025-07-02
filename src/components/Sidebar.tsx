@@ -43,8 +43,8 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <div className="fixed left-0 top-0 h-full w-80 bg-dark-bg p-6 flex flex-col justify-between">
-      <div>
+    <div className="fixed left-0 top-0 h-full w-[30vw] min-w-[320px] bg-transparent p-6 flex flex-col justify-between" style={{zIndex: 10}}>
+      <div className="pl-16">
         {/* Profile Picture */}
         <div className="flex flex-col items-center mb-12 mt-16">
           <div className="w-60 h-60 rounded-full overflow-hidden mb-6 border-4 border-accent/20 flex items-center justify-center">
@@ -54,8 +54,8 @@ const Sidebar: React.FC = () => {
               className="w-full h-full object-cover scale-110"
             />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3 w-full text-left">Mahir Arora</h1>
-          <div className="w-full text-left">
+          <h1 className="text-3xl font-bold text-white mb-3 w-full text-center">Mahir Arora</h1>
+          <div className="w-full text-center">
             <p className="text-white text-lg">Nanotechnology Engineer</p>
             <p className="text-gray-400 text-lg">@ University of Waterloo</p>
           </div>
@@ -66,7 +66,7 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       {/* Social Links */}
-      <div className="flex justify-center space-x-6 mb-2">
+      <div className="flex justify-center space-x-6 mb-2 pl-16">
         {socialLinks.map((link) => (
           <a
             key={link.name}
