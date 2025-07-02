@@ -1,46 +1,145 @@
-# Getting Started with Create React App
+# Engineering Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website built with React and Tailwind CSS, designed for nanotechnology engineers and researchers.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 🎨 **Dark Theme Design** - Modern dark aesthetic with clean typography
+- 📱 **Fully Responsive** - Works perfectly on desktop, tablet, and mobile
+- 🧱 **Fixed Sidebar** - Profile information stays visible while scrolling
+- 📋 **Project Showcase** - Display projects with images, descriptions, and links
+- ⚡ **Smooth Animations** - Hover effects and transitions for better UX
+- 🔧 **Easy Maintenance** - Centralized project data management
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React 18** - Modern React with TypeScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **TypeScript** - Type-safe JavaScript
+- **Responsive Design** - Mobile-first approach
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (version 16 or higher)
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd portfolio
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the development server:
+```bash
+npm start
+```
 
-### `npm run eject`
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Customization
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Updating Project Data
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Edit `src/data/projects.ts` to add, remove, or modify projects:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```typescript
+export const projects: Project[] = [
+  {
+    id: 1,
+    title: "Your Project Title",
+    description: "Project description here...",
+    image: "https://your-image-url.com/image.jpg",
+    technologies: ["React", "TypeScript", "Node.js"],
+    githubUrl: "https://github.com/yourusername/project",
+    demoUrl: "https://demo-url.com",
+    buttonText: "View Demo"
+  },
+  // Add more projects...
+];
+```
 
-## Learn More
+### Updating Profile Information
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Edit `src/components/Sidebar.tsx` and `src/components/MobileMenu.tsx` to update:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Profile picture URL
+- Name and title
+- About section
+- Skills list
+- Social media links
+
+### Styling
+
+The project uses Tailwind CSS with custom colors defined in `tailwind.config.js`. You can modify:
+
+- Color scheme in the `colors` section
+- Typography in the `fontFamily` section
+- Custom animations and utilities
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Sidebar.tsx          # Desktop sidebar component
+│   ├── MobileMenu.tsx       # Mobile menu component
+│   ├── ProjectCard.tsx      # Individual project card
+│   └── ProjectsList.tsx     # Projects grid container
+├── data/
+│   └── projects.ts          # Project data and types
+├── App.tsx                  # Main app component
+└── index.css               # Global styles and Tailwind imports
+```
+
+## Deployment
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Deploy to Netlify
+
+1. Push your code to GitHub
+2. Connect your repository to Netlify
+3. Set build command: `npm run build`
+4. Set publish directory: `build`
+
+### Deploy to Vercel
+
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run: `vercel`
+3. Follow the prompts
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Support
+
+If you have any questions or need help customizing the portfolio, please open an issue on GitHub.
