@@ -4,7 +4,7 @@ import { projects } from '../data/projects';
 
 const ProjectsList: React.FC = () => {
   return (
-    <div className="p-4 lg:p-8 pt-16 lg:pt-8">
+    <div className="p-4 lg:p-8 pt-16 lg:pt-8 mt-16">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl lg:text-4xl font-bold text-white mb-2">Projects</h1>
