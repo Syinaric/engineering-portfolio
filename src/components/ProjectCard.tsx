@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Project } from '../data/projects';
 
 interface ProjectCardProps {
@@ -6,6 +6,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
   const handleButtonClick = () => {
     if (project.demoUrl) {
       window.open(project.demoUrl, '_blank');
@@ -16,16 +18,61 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     }
   };
 
+  const nextImage = () => {
+    if (project.images && project.images.length > 1) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (project.images && project.images.length > 1) {
+      setCurrentImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length);
+    }
+  };
+
+  const hasMultipleImages = project.images && project.images.length > 1;
+  const currentImage = hasMultipleImages && project.images ? project.images[currentImageIndex] : project.image;
+
   return (
     <div className="bg-dark-card border border-dark-border rounded-xl overflow-hidden card-hover">
-      {/* Project Image */}
+      {/* Project Image with Carousel */}
       <div className="relative h-48 overflow-hidden">
         <img
-          src={project.image}
+          src={currentImage}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        
+        {/* Carousel Navigation Arrows */}
+        {hasMultipleImages && (
+          <>
+            {/* Left Arrow */}
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-200 z-10"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            
+            {/* Right Arrow */}
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-200 z-10"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            
+            {/* Image Counter */}
+            <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
+              {currentImageIndex + 1} / {project.images!.length}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Project Content */}
