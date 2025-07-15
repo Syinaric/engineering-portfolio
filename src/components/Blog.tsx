@@ -38,7 +38,6 @@ const Blog: React.FC = () => {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-2">{post.title}</h2>
-                  <p className="text-accent font-medium">{post.project}</p>
                 </div>
                 <span className="text-gray-500 text-sm bg-dark-bg px-3 py-1 rounded-lg">
                   {new Date(post.date).toLocaleDateString('en-US', {
