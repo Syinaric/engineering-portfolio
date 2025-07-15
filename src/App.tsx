@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import ProjectsList from './components/ProjectsList';
+import Blog from './components/Blog';
 import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentSection, setCurrentSection] = useState('projects');
+
+    useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash === 'blog' || hash === 'projects') {
+        setCurrentSection(hash);
+      }
+    };
+
+    // Set initial section based on hash
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <div className="min-h-screen bg-dark-bg relative">
@@ -23,17 +41,17 @@ function App() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <MobileMenu onClose={() => setIsMobileMenuOpen(false)} />
+          <MobileMenu onClose={() => setIsMobileMenuOpen(false)} currentSection={currentSection} />
         )}
 
         {/* Desktop Sidebar */}
         <div className="hidden lg:block">
-          <Sidebar />
+          <Sidebar currentSection={currentSection} />
         </div>
         
         {/* Main Content */}
         <div className="lg:ml-[30vw]">
-          <ProjectsList />
+          {currentSection === 'blog' ? <Blog /> : <ProjectsList />}
         </div>
       </div>
     </div>

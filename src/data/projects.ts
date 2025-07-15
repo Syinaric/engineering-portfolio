@@ -25,7 +25,7 @@ export const projects: Project[] = [
       require('../assets/TasteR-4.png')
     ],
     technologies: [],
-    githubUrl: "",
+    githubUrl: "https://github.com/Syinaric/TasteR/tree/main",
     buttonText: "View Code"
   },
   {
