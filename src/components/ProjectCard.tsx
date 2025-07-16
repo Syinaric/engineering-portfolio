@@ -34,66 +34,98 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const currentImage = hasMultipleImages && project.images ? project.images[currentImageIndex] : project.image;
 
   return (
-    <div className="bg-dark-card border border-dark-border rounded-xl overflow-hidden card-hover">
-      {/* Project Image with Carousel */}
-      <div className="relative h-48 overflow-hidden">
-        <img
-          src={currentImage}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        
-        {/* Carousel Navigation Arrows */}
-        {hasMultipleImages && (
-          <>
-            {/* Left Arrow */}
-            <button
-              onClick={prevImage}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-200 z-10"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            {/* Right Arrow */}
-            <button
-              onClick={nextImage}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-200 z-10"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            
-            {/* Image Counter */}
-            <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
-              {currentImageIndex + 1} / {project.images!.length}
+    <div className="bg-dark-card border border-dark-border overflow-hidden hover:border-accent/50 transition-colors duration-300">
+      <div className="flex flex-col lg:flex-row">
+        {/* Left Side - Text Content */}
+        <div className="flex-1 p-6 lg:p-8 flex flex-col justify-between">
+          <div>
+            {/* Project Title */}
+            <div className="mb-4">
+              <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 tracking-tight">
+                {project.title}
+              </h3>
+              <div className="w-16 h-0.5 bg-accent"></div>
             </div>
-          </>
-        )}
-      </div>
 
-      {/* Project Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-        <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-          {project.description}
-        </p>
+            {/* Project Description */}
+            <p className="text-gray-300 text-sm lg:text-base leading-relaxed mb-6">
+              {project.description}
+            </p>
 
-        {/* Action Button */}
-        {project.buttonText && (
-          <button
-            onClick={handleButtonClick}
-            className="w-full bg-accent hover:bg-accent-hover text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-          >
-            <span>{project.buttonText}</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </button>
-        )}
+            {/* Technologies */}
+            {project.technologies && project.technologies.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold text-accent mb-2 uppercase tracking-wide">TECHNOLOGIES</h4>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="bg-dark-bg border border-dark-border text-gray-300 px-2 py-1 text-xs font-mono"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Action Button */}
+          {project.buttonText && (
+            <div className="mt-auto">
+              <button
+                onClick={handleButtonClick}
+                className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group"
+              >
+                <span>{project.buttonText}</span>
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Right Side - Image */}
+        <div className="lg:w-1/2 relative">
+          <div className="relative h-48 lg:h-80 overflow-hidden">
+            <img
+              src={currentImage}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Carousel Navigation Arrows */}
+            {hasMultipleImages && (
+              <>
+                {/* Left Arrow */}
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-2 transition-colors duration-200 z-10"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                {/* Right Arrow */}
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-2 transition-colors duration-200 z-10"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                
+                {/* Image Counter */}
+                <div className="absolute bottom-4 right-4 bg-black/70 text-white text-sm px-3 py-1 font-mono">
+                  {currentImageIndex + 1} / {project.images!.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
