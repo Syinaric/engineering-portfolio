@@ -70,9 +70,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             )}
           </div>
 
-          {/* Action Button */}
-          {project.buttonText && (
-            <div className="mt-auto">
+          {/* Action Buttons */}
+          <div className="mt-auto">
+            {project.buttons && project.buttons.length > 0 ? (
+              <div className="flex flex-wrap gap-3">
+                {project.buttons.map((button, index) => (
+                  <button
+                    key={index}
+                    onClick={() => window.open(button.url, '_blank')}
+                    className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group"
+                  >
+                    <span>{button.text}</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            ) : project.buttonText ? (
               <button
                 onClick={handleButtonClick}
                 className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group"
@@ -82,8 +97,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </button>
-            </div>
-          )}
+            ) : null}
+          </div>
         </div>
 
         {/* Right Side - Image */}

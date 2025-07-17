@@ -72,8 +72,22 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
             </div>
             <h1 className="text-2xl font-bold text-white mb-3 w-full text-left">Mahir Arora</h1>
             <div className="w-full text-left">
-              <p className="text-white text-base">Nanotechnology Engineer</p>
-              <p className="text-gray-400 text-base">@ University of Waterloo</p>
+              <a 
+                href="https://uwaterloo.ca/future-students/programs/nanotechnology-engineering" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block"
+              >
+                Nanotechnology Engineer
+              </a>
+              <a 
+                href="https://uwaterloo.ca/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block"
+              >
+                @ University of Waterloo
+              </a>
             </div>
           </div>
           {/* Currently Doing Section */}
@@ -88,7 +102,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 window.location.href = '#projects';
                 onClose();
               }}
-              className={`w-full border rounded-lg p-3 text-white transition-colors duration-200 mb-3 ${
+              className={`w-full border p-3 text-white transition-colors duration-200 mb-3 ${
                 currentSection === 'projects' 
                   ? 'bg-accent/20 border-accent' 
                   : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
@@ -107,7 +121,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 window.location.href = '#blog';
                 onClose();
               }}
-              className={`w-full border rounded-lg p-3 text-white transition-colors duration-200 ${
+              className={`w-full border p-3 text-white transition-colors duration-200 ${
                 currentSection === 'blog' 
                   ? 'bg-accent/20 border-accent' 
                   : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'

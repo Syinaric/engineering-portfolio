@@ -5,6 +5,11 @@ export interface Project {
   image: string;
   images?: string[];
   technologies: string[];
+  buttons?: {
+    text: string;
+    url: string;
+    type: 'github' | 'demo' | 'external';
+  }[];
   githubUrl?: string;
   demoUrl?: string;
   externalUrl?: string;
@@ -34,6 +39,18 @@ export const projects: Project[] = [
     description: "Smart plant care system that uses hardware, software, and AI to monitor plant health, automate watering, and provide real-time feedback and interaction through a chatbot and web dashboard.",
     image: require('../assets/BotAutonomy.jpeg'),
     technologies: [],
+    buttons: [
+      {
+        text: "View Code",
+        url: "https://github.com/mibrahim20071030/PlantHub",
+        type: "github"
+      },
+      {
+        text: "View Project",
+        url: "https://dorahacks.io/buidl/26416/",
+        type: "demo"
+      }
+    ],
     githubUrl: "https://github.com/mibrahim20071030/PlantHub",
     buttonText: "View Code"
   },

@@ -60,8 +60,22 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
           </div>
           <h1 className="text-3xl font-bold text-white mb-3 w-full text-center">Mahir Arora</h1>
           <div className="w-full text-center">
-            <p className="text-white text-lg">Nanotechnology Engineer</p>
-            <p className="text-gray-400 text-lg">@ University of Waterloo</p>
+            <a 
+              href="https://uwaterloo.ca/future-students/programs/nanotechnology-engineering" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white text-lg hover:text-accent transition-colors duration-200 cursor-pointer block"
+            >
+              Nanotechnology Engineer
+            </a>
+            <a 
+              href="https://uwaterloo.ca/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 text-lg hover:text-accent transition-colors duration-200 cursor-pointer block"
+            >
+              @ University of Waterloo
+            </a>
           </div>
         </div>
         {/* Currently Doing Section */}
@@ -73,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
         <div className="mb-8">
           <button
             onClick={() => window.location.href = '#projects'}
-            className={`w-full border rounded-lg p-3 text-white transition-colors duration-200 mb-3 ${
+            className={`w-full border p-3 text-white transition-colors duration-200 mb-3 ${
               currentSection === 'projects' 
                 ? 'bg-accent/20 border-accent' 
                 : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
@@ -89,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
           
           <button
             onClick={() => window.location.href = '#blog'}
-            className={`w-full border rounded-lg p-3 text-white transition-colors duration-200 ${
+            className={`w-full border p-3 text-white transition-colors duration-200 ${
               currentSection === 'blog' 
                 ? 'bg-accent/20 border-accent' 
                 : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
