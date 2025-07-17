@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
     <div className="fixed left-0 top-0 h-full w-[30vw] min-w-[320px] bg-transparent p-6 flex flex-col justify-between" style={{zIndex: 10}}>
       <div className="pl-16">
         {/* Profile Picture */}
-        <div className="flex flex-col items-center mb-12 mt-16">
+        <div className="flex flex-col items-center mb-8 mt-12">
           <div className="w-60 h-60 rounded-full overflow-hidden mb-6 border-4 border-accent/20 flex items-center justify-center">
             <img
               src={profileImg}
@@ -79,12 +79,19 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
           </div>
         </div>
         {/* Currently Doing Section */}
-        <div className="mb-12">
+        <div className="mb-4">
           <CurrentlyDoing />
         </div>
         
         {/* Navigation Buttons */}
-        <div className="mb-8">
+        <div className="mb-6">
+          {/* Keyboard Shortcut Hint */}
+          <div className="mb-3 text-center">
+            <div className="text-xs text-gray-500 font-mono">
+              {navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? '⌘K' : 'Ctrl+K'} to switch
+            </div>
+          </div>
+          
           <button
             onClick={() => window.location.href = '#projects'}
             className={`w-full border p-3 text-white transition-colors duration-200 mb-3 ${

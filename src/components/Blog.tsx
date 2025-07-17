@@ -34,12 +34,12 @@ const Blog: React.FC = () => {
         
         <div className="space-y-8">
           {blogPosts.map((post) => (
-            <article key={post.id} className="bg-dark-card border border-dark-border rounded-xl p-6 hover:border-accent/50 transition-colors duration-200">
+            <article key={post.id} className="bg-dark-card border border-dark-border p-6 hover:border-accent/50 transition-colors duration-200">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-2">{post.title}</h2>
                 </div>
-                <span className="text-gray-500 text-sm bg-dark-bg px-3 py-1 rounded-lg">
+                <span className="text-gray-500 text-sm bg-dark-bg px-3 py-1">
                   {new Date(post.date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -56,7 +56,7 @@ const Blog: React.FC = () => {
                 <div className="mb-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {post.images.map((image, index) => (
-                      <div key={index} className="bg-dark-bg rounded-lg overflow-hidden">
+                      <div key={index} className="bg-dark-bg overflow-hidden">
                         <img
                           src={image}
                           alt={`${post.title} - Image ${index + 1}`}
@@ -72,7 +72,7 @@ const Blog: React.FC = () => {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-md"
+                    className="text-xs bg-accent/20 text-accent px-2 py-1"
                   >
                     {tag}
                   </span>

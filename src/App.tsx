@@ -9,7 +9,11 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('projects');
 
-    useEffect(() => {
+  // Detect operating system
+  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const isMobile = window.innerWidth < 1024; // lg breakpoint
+
+  useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
       if (hash === 'blog' || hash === 'projects') {
@@ -25,6 +29,25 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Keyboard shortcuts for desktop users
+  useEffect(() => {
+    if (isMobile) return; // Don't add keyboard shortcuts on mobile
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const modifierKey = isMac ? event.metaKey : event.ctrlKey;
+      
+      if (modifierKey && event.key === 'k') {
+        event.preventDefault();
+        const newSection = currentSection === 'projects' ? 'blog' : 'projects';
+        setCurrentSection(newSection);
+        window.location.hash = newSection;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSection, isMac, isMobile]);
+
   return (
     <div className="min-h-screen bg-dark-bg relative">
       <Spotlight />
@@ -38,6 +61,8 @@ function App() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+
+
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
