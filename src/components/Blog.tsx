@@ -14,6 +14,19 @@ const Blog: React.FC = () => {
   // Sample blog posts - you can add more manually here
   const blogPosts: BlogPost[] = [
     {
+      id: '2',
+      title: 'Stator Body Redesign',
+      date: '2025-07-18',
+      project: 'Motor Research',
+      content: 'Embarrassed to say that this was my work 💀. BUT it\'s okay because I fixed it and it actually fits the size of the neodymium magnets I got since I finally bought a caliper. I also updated the size of the other parts so they fit my metal shaft and bearings since before I got the caliper I was measuring diameter with an old ruler with faded lines. All the parts have arrived EXCEPT for the enameled copper wire which is the most important. I also just realized that I am going to need an ESC or I\'m gonna have to make my own using an Arduino which might get confusing.',
+      tags: [],
+      images: [
+        require('../assets/old stator body.png'),
+        require('../assets/old stator body 2.png'),
+        require('../assets/new stator body.png')
+      ]
+    },
+    {
       id: '1',
       title: 'Brushless DC Motor??',
       date: '2025-07-15',
@@ -55,15 +68,30 @@ const Blog: React.FC = () => {
               {post.images && post.images.length > 0 && (
                 <div className="mb-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {post.images.map((image, index) => (
-                      <div key={index} className="bg-dark-bg overflow-hidden">
-                        <img
-                          src={image}
-                          alt={`${post.title} - Image ${index + 1}`}
-                          className="w-full h-auto object-cover"
-                        />
-                      </div>
-                    ))}
+                    {post.images.map((image, index) => {
+                      const imageName = image.toString().toLowerCase();
+                      let label = '';
+                      if (imageName.includes('old stator body')) {
+                        label = 'OLD';
+                      } else if (imageName.includes('new stator body')) {
+                        label = 'NEW';
+                      }
+                      
+                      return (
+                        <div key={index} className="bg-dark-bg overflow-hidden relative">
+                          <img
+                            src={image}
+                            alt={`${post.title} - Image ${index + 1}`}
+                            className="w-full h-auto object-cover"
+                          />
+                          {label && (
+                            <div className="absolute top-2 left-2 bg-accent text-white px-2 py-1 text-sm font-bold">
+                              {label}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
