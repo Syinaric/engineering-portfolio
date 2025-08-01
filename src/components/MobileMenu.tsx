@@ -76,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 href="https://uwaterloo.ca/future-students/programs/nanotechnology-engineering" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block"
+                className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
               >
                 Nanotechnology Engineer
               </a>
@@ -84,7 +84,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 href="https://uwaterloo.ca/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block"
+                className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
               >
                 @ University of Waterloo
               </a>
@@ -102,7 +102,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 window.location.href = '#projects';
                 onClose();
               }}
-              className={`w-full border p-3 text-white transition-colors duration-200 mb-3 ${
+              className={`w-full border p-3 text-white transition-colors duration-200 mb-3 cursor-target ${
                 currentSection === 'projects' 
                   ? 'bg-accent/20 border-accent' 
                   : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
@@ -121,7 +121,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 window.location.href = '#blog';
                 onClose();
               }}
-              className={`w-full border p-3 text-white transition-colors duration-200 ${
+              className={`w-full border p-3 text-white transition-colors duration-200 cursor-target ${
                 currentSection === 'blog' 
                   ? 'bg-accent/20 border-accent' 
                   : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
@@ -144,7 +144,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center bg-dark-card rounded-lg text-gray-400 hover:text-accent hover:bg-accent/20 transition-colors duration-200"
+              className="w-12 h-12 flex items-center justify-center bg-dark-card rounded-lg text-gray-400 hover:text-accent hover:bg-accent/20 transition-colors duration-200 cursor-target"
               title={link.name}
             >
               {link.icon}

@@ -34,7 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const currentImage = hasMultipleImages && project.images ? project.images[currentImageIndex] : project.image;
 
   return (
-    <div className="bg-dark-card border border-dark-border overflow-hidden hover:border-accent/50 transition-colors duration-300">
+    <div className="bg-dark-card border border-dark-border overflow-hidden hover:border-accent/50 transition-colors duration-300 cursor-target">
       <div className="flex flex-col lg:flex-row">
         {/* Left Side - Text Content */}
         <div className="flex-1 p-6 lg:p-8 flex flex-col justify-between">
@@ -78,7 +78,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <button
                     key={index}
                     onClick={() => window.open(button.url, '_blank')}
-                    className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group"
+                    className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group cursor-target"
                   >
                     <span>{button.text}</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             ) : project.buttonText ? (
               <button
                 onClick={handleButtonClick}
-                className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group"
+                className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group cursor-target"
               >
                 <span>{project.buttonText}</span>
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,7 +116,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 {/* Left Arrow */}
                 <button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-2 transition-colors duration-200 z-10"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-2 transition-colors duration-200 z-10 cursor-target"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -126,7 +126,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 {/* Right Arrow */}
                 <button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-2 transition-colors duration-200 z-10"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-2 transition-colors duration-200 z-10 cursor-target"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

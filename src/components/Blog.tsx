@@ -47,7 +47,7 @@ const Blog: React.FC = () => {
         
         <div className="space-y-8">
           {blogPosts.map((post) => (
-            <article key={post.id} className="bg-dark-card border border-dark-border p-6 hover:border-accent/50 transition-colors duration-200">
+            <article key={post.id} className="bg-dark-card border border-dark-border p-6 hover:border-accent/50 transition-colors duration-200 cursor-target">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-2">{post.title}</h2>
