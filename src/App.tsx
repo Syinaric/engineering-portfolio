@@ -5,6 +5,7 @@ import Blog from './components/Blog';
 import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
+import PingPongCode from './components/PingPongCode';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,9 +17,9 @@ function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash === 'blog' || hash === 'projects') {
-        setCurrentSection(hash);
+      const hash = window.location.hash;
+      if (hash === '#blog' || hash === '#projects') {
+        setCurrentSection(hash.slice(1));
       }
     };
 
@@ -29,6 +30,9 @@ function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  // Check if we're on the ping pong code page
+  const isPingPongCodePage = window.location.hash === '#ping-pong-code';
 
   // Keyboard shortcuts for desktop users
   useEffect(() => {
@@ -81,7 +85,7 @@ function App() {
         
         {/* Main Content */}
         <div className="lg:ml-[30vw]">
-          {currentSection === 'blog' ? <Blog /> : <ProjectsList />}
+          {isPingPongCodePage ? <PingPongCode /> : (currentSection === 'blog' ? <Blog /> : <ProjectsList />)}
         </div>
       </div>
     </div>

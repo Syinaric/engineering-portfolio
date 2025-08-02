@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImg from '../assets/mahir.jpg';
+import profileImg from '../assets/Mahir cn tower.jpg';
 import CurrentlyDoing from './CurrentlyDoing';
 
 interface MobileMenuProps {
@@ -67,7 +67,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
               <img
                 src={profileImg}
                 alt="Profile"
-                className="w-full h-full object-cover scale-110"
+                className="w-full h-full object-cover scale-150"
               />
             </div>
             <h1 className="text-2xl font-bold text-white mb-3 w-full text-left">Mahir Arora</h1>

@@ -103,7 +103,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
         {/* Right Side - Image */}
         <div className="lg:w-1/2 relative">
-          <div className="relative h-48 lg:h-80 overflow-hidden">
+          <div className={`relative overflow-hidden ${
+            project.title === "Robot Ping Pong Opponent" 
+              ? "h-48 lg:h-96" 
+              : "h-48 lg:h-80"
+          }`}>
             <img
               src={currentImage}
               alt={project.title}

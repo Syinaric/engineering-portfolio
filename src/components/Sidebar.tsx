@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImg from '../assets/mahir.jpg';
+import profileImg from '../assets/Mahir cn tower.jpg';
 import CurrentlyDoing from './CurrentlyDoing';
 
 interface SidebarProps {
@@ -55,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
             <img
               src={profileImg}
               alt="Profile"
-              className="w-full h-full object-cover scale-110"
+              className="w-full h-full object-cover scale-150"
             />
           </div>
           <h1 className="text-3xl font-bold text-white mb-3 w-full text-center">Mahir Arora</h1>
