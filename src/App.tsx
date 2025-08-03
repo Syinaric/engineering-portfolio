@@ -21,6 +21,8 @@ function App() {
       if (hash === '#blog' || hash === '#projects') {
         setCurrentSection(hash.slice(1));
       }
+      // Update ping pong code page state
+      setIsPingPongCodePage(hash === '#ping-pong-code');
     };
 
     // Set initial section based on hash
@@ -32,7 +34,7 @@ function App() {
   }, []);
 
   // Check if we're on the ping pong code page
-  const isPingPongCodePage = window.location.hash === '#ping-pong-code';
+  const [isPingPongCodePage, setIsPingPongCodePage] = useState(window.location.hash === '#ping-pong-code');
 
   // Keyboard shortcuts for desktop users
   useEffect(() => {

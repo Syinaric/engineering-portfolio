@@ -62,7 +62,7 @@ export const projects: Project[] = [
       {
         text: "View Code",
         url: "#ping-pong-code",
-        type: "external"
+        type: "demo"
       },
       {
         text: "View Drawings",

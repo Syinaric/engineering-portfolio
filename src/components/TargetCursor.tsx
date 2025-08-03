@@ -13,6 +13,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   spinDuration = 2,
   hideDefaultCursor = true,
 }) => {
+  // Detect mobile devices
+  const isMobile = window.innerWidth < 1024 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const cursorRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<NodeListOf<Element> | null>(null);
   const spinTl = useRef<gsap.core.Timeline | null>(null);
@@ -314,6 +316,11 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         .to(cursorRef.current, { rotation: "+=360", duration: spinDuration, ease: "none" });
     }
   }, [spinDuration]);
+
+  // Don't render custom cursor on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div ref={cursorRef} className="target-cursor-wrapper">

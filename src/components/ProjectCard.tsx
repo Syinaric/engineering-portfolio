@@ -77,7 +77,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 {project.buttons.map((button, index) => (
                   <button
                     key={index}
-                    onClick={() => window.open(button.url, '_blank')}
+                    onClick={() => {
+                      if (button.url.startsWith('#')) {
+                        // Handle hash-based URLs (internal navigation)
+                        window.location.hash = button.url;
+                      } else {
+                        // Handle external URLs (open in new tab)
+                        window.open(button.url, '_blank');
+                      }
+                    }}
                     className="bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-4 transition-colors duration-200 flex items-center space-x-2 group cursor-target"
                   >
                     <span>{button.text}</span>
