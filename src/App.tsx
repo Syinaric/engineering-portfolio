@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 import Sidebar from './components/Sidebar';
 import ProjectsList from './components/ProjectsList';
 import Blog from './components/Blog';
@@ -55,14 +56,15 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSection, isMac, isMobile]);
 
-  return (
-    <div className="min-h-screen bg-dark-bg relative">
-      <Spotlight />
-      <TargetCursor 
-        spinDuration={3.6}
-        hideDefaultCursor={true}
-      />
-      <div className="relative z-10">
+            return (
+            <div className="min-h-screen bg-dark-bg relative">
+              <Spotlight />
+              <TargetCursor 
+                spinDuration={3.6}
+                hideDefaultCursor={true}
+              />
+              <Analytics />
+              <div className="relative z-10">
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(true)}
