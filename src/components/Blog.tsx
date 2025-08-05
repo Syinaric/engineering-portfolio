@@ -14,6 +14,19 @@ const Blog: React.FC = () => {
   // Sample blog posts - you can add more manually here
   const blogPosts: BlogPost[] = [
     {
+      id: '3',
+      title: 'Motor Prototype Assembly',
+      date: '2025-08-05',
+      project: 'Motor Research',
+      content: 'So I printed a few prototypes of the cad and settled on one. Then I coiled 24 AWG enamled copper wire around every third stator tooth. I then soldered the copper to jumper cables so I can connect it to a DIY ESC made with arduino. I also glued the magnoets in alternating polarity onto the rotor and got hella glue all over my fingers. This motor better work.',
+      tags: [],
+      images: [
+        require('../assets/stator.jpg'),
+        require('../assets/wired stator.jpg'),
+        require('../assets/magnets.jpg')
+      ]
+    },
+    {
       id: '2',
       title: 'Stator Body Redesign',
       date: '2025-07-18',
