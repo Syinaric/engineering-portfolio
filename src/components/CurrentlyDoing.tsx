@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 const hobbies = [
-  'swimming in my pool',
+  'swimming',
   'walking my dog',
   'napping',
   'playing badminton',
   'learning KiCad',
-  'unclogging my 3D printer',
-  "ripping my hair out because my code won't compile",
+  'drinking boba',
+  'eating butter chicken',
+  'waiting for my 3d print to finish',
+  'at the gym',
+  'building a lego set',
   'brewing my third coffee of the day'
 ];
 
