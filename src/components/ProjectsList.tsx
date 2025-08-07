@@ -27,7 +27,7 @@ const ProjectsList: React.FC = () => {
         <p className="text-gray-500 text-sm font-mono">
           [ MORE_PROJECTS_IN_DEVELOPMENT ]
         </p>
-        <p className="text-gray-600 text-xs font-mono mt-2 opacity-30">
+        <p className="text-gray-600 text-xs font-mono mt-2 opacity-80">
           {shortcut}
         </p>
       </div>
