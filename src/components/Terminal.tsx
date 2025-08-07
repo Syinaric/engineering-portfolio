@@ -120,7 +120,7 @@ const Terminal: React.FC<TerminalProps> = ({ onExit }) => {
     <div className="fixed inset-0 bg-black text-purple-400 font-mono text-sm overflow-hidden z-50">
       {/* Terminal Header */}
       <div className="bg-gray-900 p-2 border-b border-purple-500 flex justify-between items-center">
-        <span className="text-purple-400">Portfolio Terminal</span>
+        <span className="text-purple-400">Secret Portfolio Terminal</span>
         <span className="text-purple-400">
           {navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? '⌘+⇧+M' : 'Ctrl+Shift+M'} to exit
         </span>
