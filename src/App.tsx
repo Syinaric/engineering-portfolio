@@ -8,10 +8,12 @@ import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
 import PingPongCode from './components/PingPongCode';
+import Terminal from './components/Terminal';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('projects');
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   // Detect operating system
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -43,6 +45,8 @@ function App() {
     if (isMobile) return; // Don't add keyboard shortcuts on mobile
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      console.log('Key pressed:', event.key, 'Meta:', event.metaKey, 'Ctrl:', event.ctrlKey, 'Mac:', isMac); // Debug all key presses
+      
       const modifierKey = isMac ? event.metaKey : event.ctrlKey;
       
       if (modifierKey && event.key === 'k') {
@@ -51,10 +55,19 @@ function App() {
         setCurrentSection(newSection);
         window.location.hash = newSection;
       }
+
+      // Terminal shortcut: Ctrl+Shift+M (Windows) or Cmd+Shift+M (Mac)
+      if ((isMac && event.metaKey && event.shiftKey && event.key === 'm') || 
+          (!isMac && event.ctrlKey && event.shiftKey && event.key === 'm')) {
+        event.preventDefault();
+        console.log('Terminal shortcut triggered!'); // Debug log
+        setIsTerminalOpen(!isTerminalOpen);
+      }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    // Use capture phase to ensure the event is caught
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [currentSection, isMac, isMobile]);
 
             return (
@@ -78,6 +91,8 @@ function App() {
 
 
 
+
+
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <MobileMenu onClose={() => setIsMobileMenuOpen(false)} currentSection={currentSection} />
@@ -97,6 +112,11 @@ function App() {
           )}
         </div>
       </div>
+
+      {/* Terminal Overlay */}
+      {isTerminalOpen && (
+        <Terminal onExit={() => setIsTerminalOpen(false)} />
+      )}
     </div>
   );
 }

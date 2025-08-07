@@ -3,6 +3,10 @@ import ProjectCard from './ProjectCard';
 import { projects } from '../data/projects';
 
 const ProjectsList: React.FC = () => {
+  // Detect operating system for shortcut display
+  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const shortcut = isMac ? '⌘+⇧+M' : 'Ctrl+Shift+M';
+
   return (
     <div className="p-4 lg:p-8 pt-16 lg:pt-8 mt-16">
       {/* Header */}
@@ -22,6 +26,9 @@ const ProjectsList: React.FC = () => {
       <div className="mt-16 text-center border-t border-dark-border pt-8">
         <p className="text-gray-500 text-sm font-mono">
           [ MORE_PROJECTS_IN_DEVELOPMENT ]
+        </p>
+        <p className="text-gray-600 text-xs font-mono mt-2 opacity-30">
+          {shortcut}
         </p>
       </div>
     </div>
