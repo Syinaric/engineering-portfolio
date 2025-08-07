@@ -83,10 +83,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
             </div>
             <h1 className="text-2xl font-bold text-white mb-3 w-full text-left" style={{marginTop: '20px'}}>Mahir Arora</h1>
             <div className="w-full text-left">
-              <div className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
+              <div 
+                onClick={() => window.open('https://uwaterloo.ca/future-students/programs/nanotechnology-engineering', '_blank')}
+                className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
+              >
                 Nanotechnology Engineer
               </div>
-              <div className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
+              <div 
+                onClick={() => window.open('https://uwaterloo.ca/', '_blank')}
+                className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
+              >
                 @ University of Waterloo
               </div>
             </div>

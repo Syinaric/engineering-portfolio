@@ -68,10 +68,16 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
           </div>
           <h1 className="text-3xl font-bold text-white mb-3 w-full text-center" style={{marginTop: '20px'}}>Mahir Arora</h1>
           <div className="w-full text-center">
-            <div className="text-white text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
-              Nanotechnology Engineer
-            </div>
-            <div className="text-gray-400 text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
+                          <div 
+                onClick={() => window.open('https://uwaterloo.ca/future-students/programs/nanotechnology-engineering', '_blank')}
+                className="text-white text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
+              >
+                Nanotechnology Engineer
+              </div>
+            <div 
+              onClick={() => window.open('https://uwaterloo.ca/', '_blank')}
+              className="text-gray-400 text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
+            >
               @ University of Waterloo
             </div>
           </div>
