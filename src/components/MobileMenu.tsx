@@ -62,41 +62,42 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
           </button>
 
           {/* Profile Picture */}
-          <div className="flex flex-col items-center mb-12 mt-12">
-            <div className="w-44 h-44 rounded-full overflow-hidden mb-6 border-4 border-accent/20 flex items-center justify-center">
-              <img
-                src={profileImg}
-                alt="Profile"
-                className="w-full h-full object-cover scale-150"
-              />
+          <div className="flex flex-col items-center mb-12 mt-12 relative" style={{marginTop: '50px'}}>
+            <div className="relative">
+              <button
+                onClick={() => {
+                  window.location.href = '#about';
+                  onClose();
+                }}
+                className="w-44 h-44 rounded-full overflow-hidden border-4 border-accent/20 flex items-center justify-center hover:border-accent/40 transition-colors duration-200 cursor-target"
+              >
+                <img
+                  src={profileImg}
+                  alt="Profile"
+                  className="w-full h-full object-cover scale-150"
+                />
+              </button>
             </div>
-            <h1 className="text-2xl font-bold text-white mb-3 w-full text-left">Mahir Arora</h1>
+            <div className="absolute -left-6 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs" style={{top: 'calc(50% - 55px)'}}>
+              click here →
+            </div>
+            <h1 className="text-2xl font-bold text-white mb-3 w-full text-left" style={{marginTop: '20px'}}>Mahir Arora</h1>
             <div className="w-full text-left">
-              <a 
-                href="https://uwaterloo.ca/future-students/programs/nanotechnology-engineering" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
-              >
+              <div className="text-white text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
                 Nanotechnology Engineer
-              </a>
-              <a 
-                href="https://uwaterloo.ca/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
-              >
+              </div>
+              <div className="text-gray-400 text-base hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
                 @ University of Waterloo
-              </a>
+              </div>
             </div>
           </div>
           {/* Currently Doing Section */}
-          <div className="mb-12">
+          <div className="mb-12" style={{marginTop: '50px'}}>
             <CurrentlyDoing />
           </div>
           
           {/* Navigation Buttons */}
-          <div className="mb-8">
+          <div className="mb-8" style={{marginTop: '15px'}}>
             <button
               onClick={() => {
                 window.location.href = '#projects';
@@ -137,7 +138,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
           </div>
         </div>
         {/* Social Links */}
-        <div className="flex justify-center space-x-6 mb-2">
+        <div className="flex justify-center space-x-6 mb-2" style={{marginTop: '-20px'}}>
           {socialLinks.map((link) => (
             <a
               key={link.name}

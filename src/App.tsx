@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Sidebar from './components/Sidebar';
 import ProjectsList from './components/ProjectsList';
 import Blog from './components/Blog';
+import About from './components/About';
 import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#blog' || hash === '#projects') {
+      if (hash === '#blog' || hash === '#projects' || hash === '#about') {
         setCurrentSection(hash.slice(1));
       }
       // Update ping pong code page state
@@ -89,7 +90,11 @@ function App() {
         
         {/* Main Content */}
         <div className="lg:ml-[30vw]">
-          {isPingPongCodePage ? <PingPongCode /> : (currentSection === 'blog' ? <Blog /> : <ProjectsList />)}
+          {isPingPongCodePage ? <PingPongCode /> : (
+            currentSection === 'blog' ? <Blog /> : 
+            currentSection === 'about' ? <About /> : 
+            <ProjectsList />
+          )}
         </div>
       </div>
     </div>

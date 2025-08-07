@@ -50,41 +50,39 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
     <div className="fixed left-0 top-0 h-full w-[30vw] min-w-[320px] bg-transparent p-6 flex flex-col justify-between" style={{zIndex: 10}}>
       <div className="pl-16">
         {/* Profile Picture */}
-        <div className="flex flex-col items-center mb-8 mt-12">
-          <div className="w-60 h-60 rounded-full overflow-hidden mb-6 border-4 border-accent/20 flex items-center justify-center">
-            <img
-              src={profileImg}
-              alt="Profile"
-              className="w-full h-full object-cover scale-150"
-            />
+        <div className="flex flex-col items-center mb-8 mt-12 relative" style={{marginTop: '50px'}}>
+          <div className="relative">
+            <button
+              onClick={() => window.location.href = '#about'}
+              className="w-60 h-60 rounded-full overflow-hidden border-4 border-accent/20 flex items-center justify-center hover:border-accent/40 transition-colors duration-200 cursor-target"
+            >
+              <img
+                src={profileImg}
+                alt="Profile"
+                className="w-full h-full object-cover scale-150"
+              />
+            </button>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3 w-full text-center">Mahir Arora</h1>
+          <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs" style={{top: 'calc(50% - 55px)'}}>
+            click here →
+          </div>
+          <h1 className="text-3xl font-bold text-white mb-3 w-full text-center" style={{marginTop: '20px'}}>Mahir Arora</h1>
           <div className="w-full text-center">
-            <a 
-              href="https://uwaterloo.ca/future-students/programs/nanotechnology-engineering" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
-            >
+            <div className="text-white text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
               Nanotechnology Engineer
-            </a>
-            <a 
-              href="https://uwaterloo.ca/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-400 text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target"
-            >
+            </div>
+            <div className="text-gray-400 text-lg hover:text-accent transition-colors duration-200 cursor-pointer block cursor-target">
               @ University of Waterloo
-            </a>
+            </div>
           </div>
         </div>
         {/* Currently Doing Section */}
-        <div className="mb-4">
+        <div className="mb-4" style={{marginTop: '50px'}}>
           <CurrentlyDoing />
         </div>
         
         {/* Navigation Buttons */}
-        <div className="mb-6">
+        <div className="mb-6" style={{marginTop: '15px'}}>
           {/* Keyboard Shortcut Hint */}
           <div className="mb-3 text-center">
             <div className="text-xs text-gray-500 font-mono">
@@ -126,7 +124,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
         </div>
       </div>
       {/* Social Links */}
-      <div className="flex justify-center space-x-6 mb-2 pl-16">
+      <div className="flex justify-center space-x-6 mb-2 pl-16" style={{marginTop: '-20px'}}>
         {socialLinks.map((link) => (
           <a
             key={link.name}
