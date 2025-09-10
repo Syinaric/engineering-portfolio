@@ -63,9 +63,6 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
               />
             </button>
           </div>
-          <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs" style={{top: 'calc(50% - 55px)'}}>
-            click here →
-          </div>
           <h1 className="text-3xl font-bold text-white mb-3 w-full text-center" style={{marginTop: '20px'}}>Mahir Arora</h1>
           <div className="w-full text-center">
                           <div 
