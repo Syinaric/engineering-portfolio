@@ -8,6 +8,7 @@ import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
 import PingPongCode from './components/PingPongCode';
+import SumoBotCode from './components/SumoBotCode';
 import Terminal from './components/Terminal';
 
 function App() {
@@ -22,11 +23,14 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
+      console.log('Hash changed to:', hash); // Debug log
       if (hash === '#blog' || hash === '#projects' || hash === '#about') {
         setCurrentSection(hash.slice(1));
       }
       // Update ping pong code page state
       setIsPingPongCodePage(hash === '#ping-pong-code');
+      // Update sumo bot code page state
+      setIsSumoBotCodePage(hash === '#sumo-bot-code');
     };
 
     // Set initial section based on hash
@@ -39,6 +43,8 @@ function App() {
 
   // Check if we're on the ping pong code page
   const [isPingPongCodePage, setIsPingPongCodePage] = useState(window.location.hash === '#ping-pong-code');
+  // Check if we're on the sumo bot code page
+  const [isSumoBotCodePage, setIsSumoBotCodePage] = useState(window.location.hash === '#sumo-bot-code');
 
   // Keyboard shortcuts for desktop users
   useEffect(() => {
@@ -105,7 +111,8 @@ function App() {
         
         {/* Main Content */}
         <div className="lg:ml-[30vw]">
-          {isPingPongCodePage ? <PingPongCode /> : (
+          {isPingPongCodePage ? <PingPongCode /> : 
+           isSumoBotCodePage ? <SumoBotCode /> : (
             currentSection === 'blog' ? <Blog /> : 
             currentSection === 'about' ? <About /> : 
             <ProjectsList />

@@ -119,7 +119,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src={currentImage}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover ${
+                project.title === "Custom BLDC Motor" && currentImageIndex === 0 
+                  ? "scale-105" 
+                  : ""
+              }`}
             />
             
             {/* Carousel Navigation Arrows */}
