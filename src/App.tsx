@@ -8,13 +8,17 @@ import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
 import PingPongCode from './components/PingPongCode';
-import SumoBotCode from './components/SumoBotCode';
+import RoboticArmDetails from './components/RoboticArmDetails';
 import Terminal from './components/Terminal';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('projects');
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  // Check if we're on the ping pong code page
+  const [isPingPongCodePage, setIsPingPongCodePage] = useState(window.location.hash === '#ping-pong-code');
+  // Check if we're on the robotic arm details page
+  const [isRoboticArmDetailsPage, setIsRoboticArmDetailsPage] = useState(window.location.hash === '#robotic-arm-details');
 
   // Detect operating system
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -23,14 +27,17 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      console.log('Hash changed to:', hash); // Debug log
       if (hash === '#blog' || hash === '#projects' || hash === '#about') {
         setCurrentSection(hash.slice(1));
       }
       // Update ping pong code page state
       setIsPingPongCodePage(hash === '#ping-pong-code');
-      // Update sumo bot code page state
-      setIsSumoBotCodePage(hash === '#sumo-bot-code');
+      // Update robotic arm details page state
+      setIsRoboticArmDetailsPage(hash === '#robotic-arm-details');
+      // If navigating away from detail pages, set section to projects
+      if (hash === '' || hash === '#projects') {
+        setCurrentSection('projects');
+      }
     };
 
     // Set initial section based on hash
@@ -40,11 +47,6 @@ function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
-
-  // Check if we're on the ping pong code page
-  const [isPingPongCodePage, setIsPingPongCodePage] = useState(window.location.hash === '#ping-pong-code');
-  // Check if we're on the sumo bot code page
-  const [isSumoBotCodePage, setIsSumoBotCodePage] = useState(window.location.hash === '#sumo-bot-code');
 
   // Keyboard shortcuts for desktop users
   useEffect(() => {
@@ -112,7 +114,7 @@ function App() {
         {/* Main Content */}
         <div className="lg:ml-[30vw]">
           {isPingPongCodePage ? <PingPongCode /> : 
-           isSumoBotCodePage ? <SumoBotCode /> : (
+           isRoboticArmDetailsPage ? <RoboticArmDetails /> : (
             currentSection === 'blog' ? <Blog /> : 
             currentSection === 'about' ? <About /> : 
             <ProjectsList />
