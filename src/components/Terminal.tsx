@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 interface TerminalProps {
   onExit: () => void;
@@ -7,7 +7,6 @@ interface TerminalProps {
 const Terminal: React.FC<TerminalProps> = ({ onExit }) => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<string[]>([]);
-  const [currentLine, setCurrentLine] = useState(0);
   const [typingIndex, setTypingIndex] = useState(0);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,7 +23,7 @@ const Terminal: React.FC<TerminalProps> = ({ onExit }) => {
     'exit': () => onExit()
   };
 
-  const welcomeMessages = [
+  const welcomeMessages = useMemo(() => [
     'Terminal v2.1.4 - Portfolio Access System',
     'Initializing neural interface...',
     'Loading portfolio data...',
@@ -35,7 +34,7 @@ const Terminal: React.FC<TerminalProps> = ({ onExit }) => {
     'Type "exit" to return to main interface',
     '',
     '> '
-  ];
+  ], []);
 
   useEffect(() => {
     // Typewriter effect for welcome messages

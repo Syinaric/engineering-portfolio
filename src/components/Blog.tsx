@@ -94,7 +94,7 @@ const Blog: React.FC = () => {
                         <div key={index} className="bg-dark-bg overflow-hidden relative">
                           <img
                             src={image}
-                            alt={`${post.title} - Image ${index + 1}`}
+                            alt={`${post.title} ${index + 1}`}
                             className="w-full h-auto object-cover"
                           />
                           {label && (

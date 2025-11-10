@@ -76,7 +76,7 @@ function App() {
     // Use capture phase to ensure the event is caught
     window.addEventListener('keydown', handleKeyDown, true);
     return () => window.removeEventListener('keydown', handleKeyDown, true);
-  }, [currentSection, isMac, isMobile]);
+  }, [currentSection, isMac, isMobile, isTerminalOpen]);
 
             return (
             <div className="min-h-screen bg-dark-bg relative">

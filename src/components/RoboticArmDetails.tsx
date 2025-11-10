@@ -61,7 +61,7 @@ const RoboticArmDetails: React.FC = () => {
               which implements a rule-based evaluation system with configurable thresholds:
             </p>
             <div className="bg-dark-bg border border-dark-border p-4 mb-4 font-mono text-sm">
-              <div className="text-gray-400 mb-2">// Example Decision Logic</div>
+              <div className="text-gray-400 mb-2">{'// Example Decision Logic'}</div>
               <div className="text-accent">IF</div>
               <div className="ml-4 text-gray-300">soil_moisture &lt; 30% <span className="text-gray-500">AND</span> temperature &gt; 30°C</div>
               <div className="text-accent ml-4">THEN</div>
@@ -108,8 +108,8 @@ const RoboticArmDetails: React.FC = () => {
               <strong className="text-accent"> 6-DOF (Degree of Freedom) robotic arm</strong> using inverse kinematics:
             </p>
             <div className="bg-dark-bg border border-dark-border p-4 mb-4 font-mono text-sm">
-              <div className="text-gray-400 mb-2">// Inverse Kinematics Algorithm</div>
-              <div className="text-gray-300">target_position = (x, y, z) <span className="text-gray-500">// From computer vision</span></div>
+              <div className="text-gray-400 mb-2">{'// Inverse Kinematics Algorithm'}</div>
+              <div className="text-gray-300">target_position = (x, y, z) <span className="text-gray-500">{'// From computer vision'}</span></div>
               <div className="text-gray-300">target_orientation = (roll, pitch, yaw)</div>
               <div className="text-accent mt-2">CALCULATE:</div>
               <div className="ml-4 text-gray-300">joint_angles[6] = inverse_kinematics(target_position, target_orientation)</div>
