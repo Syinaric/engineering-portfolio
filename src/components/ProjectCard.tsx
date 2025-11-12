@@ -119,7 +119,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <img
               src={currentImage}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover ${
+                project.title === "Autonomous Utility Robotic Arm for Farming (AURA FARM)" && 
+                project.images && 
+                currentImageIndex === 2
+                  ? "scale-[1.8] object-left-top" 
+                  : ""
+              }`}
             />
             
             {/* Carousel Navigation Arrows */}

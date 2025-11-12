@@ -62,7 +62,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
           </button>
 
           {/* Profile Picture */}
-          <div className="flex flex-col items-center mb-12 mt-12 relative" style={{marginTop: '50px'}}>
+          <div className="flex flex-col items-center mb-12 mt-12 relative" style={{marginTop: '20px'}}>
             <div className="relative">
               <button
                 onClick={() => {
@@ -95,12 +95,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
             </div>
           </div>
           {/* Currently Doing Section */}
-          <div className="mb-12" style={{marginTop: '50px'}}>
+          <div className="mb-12" style={{marginTop: '30px'}}>
             <CurrentlyDoing />
           </div>
           
           {/* Navigation Buttons */}
-          <div className="mb-8" style={{marginTop: '15px'}}>
+          <div className="mb-8" style={{marginTop: '10px'}}>
             <button
               onClick={() => {
                 window.location.href = '#projects';
@@ -112,11 +112,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                   : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
               }`}
             >
-              <div className="flex items-center justify-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-                <span>Projects</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center space-x-2 flex-1">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  <span>Projects</span>
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  {navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? '⌘K' : 'Ctrl+K'}
+                </div>
               </div>
             </button>
             
@@ -125,17 +130,42 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
                 window.location.href = '#blog';
                 onClose();
               }}
-              className={`w-full border p-3 text-white transition-colors duration-200 cursor-target ${
+              className={`w-full border p-3 text-white transition-colors duration-200 mb-3 cursor-target ${
                 currentSection === 'blog' 
                   ? 'bg-accent/20 border-accent' 
                   : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
               }`}
             >
-              <div className="flex items-center justify-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                <span>Blog</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center space-x-2 flex-1">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  <span>Blog</span>
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  {navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? '⌘B' : 'Ctrl+B'}
+                </div>
+              </div>
+            </button>
+            
+            <button
+              onClick={() => {
+                window.open('https://drive.google.com/file/d/1EjlXD3IdxZ9oUwRscBJqBEAptuipYFZM/view', '_blank');
+                onClose();
+              }}
+              className="w-full border p-3 text-white transition-colors duration-200 cursor-target bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center space-x-2 flex-1">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Resume</span>
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  {navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? '⌘⇧R' : 'Ctrl+Shift+R'}
+                </div>
               </div>
             </button>
           </div>

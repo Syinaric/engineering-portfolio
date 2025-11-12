@@ -24,7 +24,8 @@ export const projects: Project[] = [
     image: require('../assets/AURA FARM.jpg'),
     images: [
       require('../assets/AURA FARM.jpg'),
-      require('../assets/Front end AURA.png')
+      require('../assets/Front end AURA.png'),
+      require('../assets/API USE.JPG')
     ],
     technologies: [],
     buttons: [

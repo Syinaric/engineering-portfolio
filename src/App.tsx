@@ -59,9 +59,22 @@ function App() {
       
       if (modifierKey && event.key === 'k') {
         event.preventDefault();
-        const newSection = currentSection === 'projects' ? 'blog' : 'projects';
-        setCurrentSection(newSection);
-        window.location.hash = newSection;
+        setCurrentSection('projects');
+        window.location.hash = 'projects';
+      }
+
+      // Blog shortcut: Ctrl+B (Windows) or Cmd+B (Mac)
+      if (modifierKey && event.key === 'b') {
+        event.preventDefault();
+        setCurrentSection('blog');
+        window.location.hash = 'blog';
+      }
+
+      // Resume shortcut: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+      if ((isMac && event.metaKey && event.shiftKey && event.key === 'r') || 
+          (!isMac && event.ctrlKey && event.shiftKey && event.key === 'r')) {
+        event.preventDefault();
+        window.open('https://drive.google.com/file/d/1EjlXD3IdxZ9oUwRscBJqBEAptuipYFZM/view', '_blank');
       }
 
       // Terminal shortcut: Ctrl+Shift+M (Windows) or Cmd+Shift+M (Mac)
