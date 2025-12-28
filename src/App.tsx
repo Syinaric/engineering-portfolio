@@ -9,6 +9,7 @@ import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
 import PingPongCode from './components/PingPongCode';
 import RoboticArmDetails from './components/RoboticArmDetails';
+import SumoBotCode from './components/SumoBotCode';
 import Terminal from './components/Terminal';
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
   const [isPingPongCodePage, setIsPingPongCodePage] = useState(window.location.hash === '#ping-pong-code');
   // Check if we're on the robotic arm details page
   const [isRoboticArmDetailsPage, setIsRoboticArmDetailsPage] = useState(window.location.hash === '#robotic-arm-details');
+  // Check if we're on the sumo bot code page
+  const [isSumoBotCodePage, setIsSumoBotCodePage] = useState(window.location.hash === '#sumo-bot-code');
 
   // Detect operating system
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -34,6 +37,8 @@ function App() {
       setIsPingPongCodePage(hash === '#ping-pong-code');
       // Update robotic arm details page state
       setIsRoboticArmDetailsPage(hash === '#robotic-arm-details');
+      // Update sumo bot code page state
+      setIsSumoBotCodePage(hash === '#sumo-bot-code');
       // If navigating away from detail pages, set section to projects
       if (hash === '' || hash === '#projects') {
         setCurrentSection('projects');
@@ -127,7 +132,8 @@ function App() {
         {/* Main Content */}
         <div className="lg:ml-[30vw]">
           {isPingPongCodePage ? <PingPongCode /> : 
-           isRoboticArmDetailsPage ? <RoboticArmDetails /> : (
+           isRoboticArmDetailsPage ? <RoboticArmDetails /> :
+           isSumoBotCodePage ? <SumoBotCode /> : (
             currentSection === 'blog' ? <Blog /> : 
             currentSection === 'about' ? <About /> : 
             <ProjectsList />

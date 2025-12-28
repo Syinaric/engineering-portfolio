@@ -18,6 +18,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 7,
+    title: "Wind-Powered Triboelectric Nanogenerator (TENG)",
+    description: "Nano Design Days 2025 - Designed and built a wind-driven Triboelectric Nanogenerator (TENG) capable of converting mechanical energy into electrical energy using the triboelectric effect. The device harvests energy from airflow, causing a rotor to spin and repeatedly bring Teflon (electron-accepting material) into contact with aluminum foil electrodes (electron-donating material), generating charge through contact–separation. The mechanical structure was custom-designed and 3D-printed in PLA to ensure electrical isolation and precise alignment. Four stationary foil-wrapped electrodes were arranged around a central rotating shaft supported by a bearing. A conductive slip-contact was implemented to electrically reference the rotating shaft while allowing smooth rotation. The generated high-voltage, low-current AC signal was rectified using a 1N4001 diode and stored in a capacitor, enabling visible output through an LED and measurable voltage on a breadboard circuit.",
+    image: require('../assets/teng1.jpg'),
+    images: [
+      require('../assets/teng1.jpg'),
+      require('../assets/teng2.jpg')
+    ],
+    technologies: [],
+    buttonText: ""
+  },
+  {
     id: 1,
     title: "Autonomous Utility Robotic Arm for Farming (AURA FARM)",
     description: "Autonomous robotic arm system for agricultural automation with data-driven decision making. Integrates AgroMonitoring API for real-time sensor data, uses computer vision (OpenCV, YOLOv8) for object detection, and implements inverse kinematics for 6-DOF arm control. Automatically generates and executes tasks like irrigation, fertilization, harvesting, and field inspection based on real-time conditions.",
