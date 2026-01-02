@@ -79,7 +79,7 @@ function App() {
       if ((isMac && event.metaKey && event.shiftKey && event.key === 'r') || 
           (!isMac && event.ctrlKey && event.shiftKey && event.key === 'r')) {
         event.preventDefault();
-        window.open('https://drive.google.com/file/d/1EjlXD3IdxZ9oUwRscBJqBEAptuipYFZM/view', '_blank');
+        window.open('https://drive.google.com/file/d/11ha4q7IouBomj3Xe9BRaQOeHW4jmwEzd/view?usp=sharing', '_blank');
       }
 
       // Terminal shortcut: Ctrl+Shift+M (Windows) or Cmd+Shift+M (Mac)

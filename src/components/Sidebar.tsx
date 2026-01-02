@@ -129,7 +129,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentSection }) => {
           </button>
           
           <button
-            onClick={() => window.open('https://drive.google.com/file/d/1EjlXD3IdxZ9oUwRscBJqBEAptuipYFZM/view', '_blank')}
+            onClick={() => window.open('https://drive.google.com/file/d/11ha4q7IouBomj3Xe9BRaQOeHW4jmwEzd/view?usp=sharing', '_blank')}
             className="w-full border p-3 text-white transition-colors duration-200 cursor-target bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent"
           >
             <div className="flex items-center justify-between">
