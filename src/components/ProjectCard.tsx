@@ -117,6 +117,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </div>
               </div>
             )}
+
+            {/* Achievements */}
+            {project.achievements && project.achievements.length > 0 && (
+              <div className="mb-6">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="text-sm font-semibold text-accent uppercase tracking-wide">ACHIEVED</span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.achievements.map((achievement, index) => (
+                      <span
+                        key={index}
+                        className="bg-accent/20 border border-accent/50 text-accent px-3 py-2 text-sm font-bold"
+                      >
+                        {achievement}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Action Buttons */}

@@ -151,7 +151,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
             
             <button
               onClick={() => {
-                window.open('https://drive.google.com/file/d/1EjlXD3IdxZ9oUwRscBJqBEAptuipYFZM/view', '_blank');
+                window.open('https://drive.google.com/file/d/11ha4q7IouBomj3Xe9BRaQOeHW4jmwEzd/view?usp=sharing', '_blank');
                 onClose();
               }}
               className="w-full border p-3 text-white transition-colors duration-200 cursor-target bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent"

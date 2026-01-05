@@ -5,6 +5,7 @@ export interface Project {
   image: string;
   images?: string[];
   technologies: string[];
+  achievements?: string[];
   buttons?: {
     text: string;
     url: string;
@@ -27,6 +28,10 @@ export const projects: Project[] = [
       require('../assets/teng2.jpg')
     ],
     technologies: [],
+    achievements: [
+      '16V',
+      '65Hz'
+    ],
     buttonText: ""
   },
   {
