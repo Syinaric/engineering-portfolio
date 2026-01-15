@@ -136,6 +136,21 @@ export const projects: Project[] = [
     buttonText: "View Code"
   },
   {
+    id: 8,
+    title: "Statistical Distribution Analysis Tool",
+    description: "Data analysis application for fitting statistical distributions to numerical datasets with interactive visualizations. Supports multiple input methods including random generation, manual entry, and CSV uploads. Built with Python, Streamlit, Matplotlib, and SciPy for the NE111 course, demonstrating statistical analysis and scientific computing in engineering. Deployed on Streamlit Community Cloud.",
+    image: require('../assets/NE111.png'),
+    technologies: [],
+    buttons: [
+      {
+        text: "View Code",
+        url: "https://github.com/Syinaric/NE111-project",
+        type: "github"
+      }
+    ],
+    buttonText: ""
+  },
+  {
     id: 6,
     title: "TasteR",
     description: "Food Discovery Web App - A web-based food discovery platform that lets users scan restaurant menus and explore dishes through a Tinder-style swipe interface with real images. Users swipe right to shortlist favorites and left to skip, helping them visually decide what to eat.",
