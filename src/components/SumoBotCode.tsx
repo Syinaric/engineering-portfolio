@@ -71,11 +71,11 @@ void handleRoot() {
   html += "</style></head><body>";
   html += "<div class='container'>";
   html += "<h1>Sumo Bot Control</h1>";
-  html += "<button class='forward' onclick='sendCmd(\"forward\")'>↑</button><br>";
-  html += "<button class='left' onclick='sendCmd(\"left\")'>←</button>";
-  html += "<button class='stop' onclick='sendCmd(\"stop\")'>STOP</button>";
-  html += "<button class='right' onclick='sendCmd(\"right\")'>→</button><br>";
-  html += "<button class='backward' onclick='sendCmd(\"backward\")'>↓</button>";
+  html += "<button class='forward' onclick='sendCmd(&quot;forward&quot;)'>↑</button><br>";
+  html += "<button class='left' onclick='sendCmd(&quot;left&quot;)'>←</button>";
+  html += "<button class='stop' onclick='sendCmd(&quot;stop&quot;)'>STOP</button>";
+  html += "<button class='right' onclick='sendCmd(&quot;right&quot;)'>→</button><br>";
+  html += "<button class='backward' onclick='sendCmd(&quot;backward&quot;)'>↓</button>";
   html += "<script>function sendCmd(cmd){fetch('/control?cmd='+cmd);}</script>";
   html += "</div></body></html>";
   server.send(200, "text/html", html);
@@ -102,7 +102,7 @@ void handleControl() {
 
 // Handle status request
 void handleStatus() {
-  String status = "{\"status\":\"running\",\"ip\":\"" + WiFi.localIP().toString() + "\"}";
+  String status = "{&quot;status&quot;:&quot;running&quot;,&quot;ip&quot;:&quot;" + WiFi.localIP().toString() + "&quot;}";
   server.send(200, "application/json", status);
 }
 

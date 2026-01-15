@@ -40,6 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
     // Preload all images
     Promise.all(loadPromises).catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [project.id]); // Only run when project changes
   
   const handleButtonClick = () => {
@@ -189,7 +190,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <img
                   key={imageSrc}
                   src={imageSrc}
-                  alt={`${project.title} - Image ${index + 1}`}
+                  alt={`${project.title} ${index + 1}`}
                   className={`absolute inset-0 w-full h-full transition-opacity duration-300 object-cover ${
                     isActive && isLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
