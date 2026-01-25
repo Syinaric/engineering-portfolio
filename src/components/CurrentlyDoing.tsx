@@ -52,7 +52,7 @@ const CurrentlyDoing: React.FC = () => {
 
   return (
     <div className="min-h-[3.5rem] w-full text-center">
-      <div className="text-lg text-gray-400">Currently I am probably:</div>
+      <div className="text-lg text-gray-400">Right now I am probably:</div>
       <div className="text-lg text-white h-7">
         <span>{display}</span>
         <span className="animate-pulse">|</span>
