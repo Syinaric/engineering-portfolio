@@ -82,7 +82,7 @@ export const projects: Project[] = [
     buttons: [
       {
         text: "View Code",
-        url: "https://github.com/mibrahim20071030/PlantHub",
+        url: "https://github.com/mibrahim20071030/BotAutonomy",
         type: "github"
       },
       {
@@ -91,7 +91,7 @@ export const projects: Project[] = [
         type: "demo"
       }
     ],
-    githubUrl: "https://github.com/mibrahim20071030/PlantHub",
+    githubUrl: "https://github.com/mibrahim20071030/BotAutonomy",
     buttonText: "View Code"
   },
   {
