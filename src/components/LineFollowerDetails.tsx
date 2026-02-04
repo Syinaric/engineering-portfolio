@@ -92,21 +92,6 @@ const LineFollowerDetails: React.FC = () => {
               optimal positioning relative to the track boundary. Unlike simple center-line following, edge following provides 
               better handling of sharp turns, intersections, and complex track geometries.
             </p>
-            <div className="bg-dark-bg border border-dark-border p-4 mb-4 font-mono text-sm">
-              <div className="text-gray-400 mb-2">{'// Edge Following Logic'}</div>
-              <div className="text-accent">WHILE</div>
-              <div className="ml-4 text-gray-300">track_detected</div>
-              <div className="text-accent ml-4">DO</div>
-              <div className="ml-8 text-gray-300">ir_reading = read_ir_sensors()</div>
-              <div className="ml-8 text-gray-300">edge_position = calculate_edge_position(ir_reading)</div>
-              <div className="ml-8 text-gray-300">error = target_edge_position - edge_position</div>
-              <div className="ml-8 text-accent">IF</div>
-              <div className="ml-12 text-gray-300">error &gt; threshold</div>
-              <div className="ml-12 text-accent">THEN</div>
-              <div className="ml-16 text-gray-300">adjust_motor_speeds(proportional_control(error))</div>
-              <div className="ml-8 text-accent">END IF</div>
-              <div className="text-accent ml-4">END WHILE</div>
-            </div>
             <p className="text-gray-300 leading-relaxed mt-4">
               The algorithm continuously monitors sensor readings, calculates the edge position, and adjusts motor speeds 
               using proportional control to maintain the desired edge offset. This approach provides smooth, responsive 
