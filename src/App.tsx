@@ -10,6 +10,7 @@ import TargetCursor from './components/TargetCursor';
 import PingPongCode from './components/PingPongCode';
 import RoboticArmDetails from './components/RoboticArmDetails';
 import SumoBotCode from './components/SumoBotCode';
+import LineFollowerDetails from './components/LineFollowerDetails';
 import Terminal from './components/Terminal';
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
   const [isRoboticArmDetailsPage, setIsRoboticArmDetailsPage] = useState(window.location.hash === '#robotic-arm-details');
   // Check if we're on the sumo bot code page
   const [isSumoBotCodePage, setIsSumoBotCodePage] = useState(window.location.hash === '#sumo-bot-code');
+  // Check if we're on the line follower details page
+  const [isLineFollowerDetailsPage, setIsLineFollowerDetailsPage] = useState(window.location.hash === '#line-follower-details');
 
   // Detect operating system
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -39,6 +42,8 @@ function App() {
       setIsRoboticArmDetailsPage(hash === '#robotic-arm-details');
       // Update sumo bot code page state
       setIsSumoBotCodePage(hash === '#sumo-bot-code');
+      // Update line follower details page state
+      setIsLineFollowerDetailsPage(hash === '#line-follower-details');
       // If navigating away from detail pages, set section to projects
       if (hash === '' || hash === '#projects') {
         setCurrentSection('projects');
@@ -133,7 +138,8 @@ function App() {
         <div className="lg:ml-[30vw]">
           {isPingPongCodePage ? <PingPongCode /> : 
            isRoboticArmDetailsPage ? <RoboticArmDetails /> :
-           isSumoBotCodePage ? <SumoBotCode /> : (
+           isSumoBotCodePage ? <SumoBotCode /> :
+           isLineFollowerDetailsPage ? <LineFollowerDetails /> : (
             currentSection === 'blog' ? <Blog /> : 
             currentSection === 'about' ? <About /> : 
             <ProjectsList />

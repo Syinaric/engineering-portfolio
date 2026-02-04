@@ -19,18 +19,26 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 7,
-    title: "Wind-Powered Triboelectric Nanogenerator (TENG)",
-    description: "Nano Design Days 2025 - Designed and built a wind-driven Triboelectric Nanogenerator (TENG) capable of converting mechanical energy into electrical energy using the triboelectric effect. The device harvests energy from airflow, causing a rotor to spin and repeatedly bring Teflon (electron-accepting material) into contact with aluminum foil electrodes (electron-donating material), generating charge through contact–separation. The mechanical structure was custom-designed and 3D-printed in PLA to ensure electrical isolation and precise alignment. Four stationary foil-wrapped electrodes were arranged around a central rotating shaft supported by a bearing. A conductive slip-contact was implemented to electrically reference the rotating shaft while allowing smooth rotation. The generated high-voltage, low-current AC signal was rectified using a 1N4001 diode and stored in a capacitor, enabling visible output through an LED and measurable voltage on a breadboard circuit.",
-    image: require('../assets/teng1.jpg'),
+    id: 9,
+    title: "Line Follower Robot",
+    description: "Autonomous line-following robot using IR, color, and ultrasonic sensors with edge-following algorithms. Completed complex track navigation with mini tasks including target hitting and cube manipulation. Features a Gemini API-powered web application that segments tracks from images and measurements, plus a GPS system for sensor data cross-referencing. Implemented an innovative memory-efficient track simulation system on Arduino R3 with only 32KB of memory.",
+    image: require('../assets/UTRA.jpg'),
     images: [
-      require('../assets/teng1.jpg'),
-      require('../assets/teng2.jpg')
+      require('../assets/UTRA.jpg'),
+      require('../assets/UTRAMAP.png')
     ],
     technologies: [],
-    achievements: [
-      '16V',
-      '65Hz'
+    buttons: [
+      {
+        text: "View More",
+        url: "#line-follower-details",
+        type: "demo"
+      },
+      {
+        text: "View Code",
+        url: "https://github.com/Aabjosh/Utra-Hacks-2026",
+        type: "github"
+      }
     ],
     buttonText: ""
   },
@@ -56,6 +64,22 @@ export const projects: Project[] = [
         url: "https://github.com/Syinaric/A.U.R.A.-Farm",
         type: "github"
       }
+    ],
+    buttonText: ""
+  },
+  {
+    id: 7,
+    title: "Wind-Powered Triboelectric Nanogenerator (TENG)",
+    description: "Nano Design Days 2025 - Designed and built a wind-driven Triboelectric Nanogenerator (TENG) capable of converting mechanical energy into electrical energy using the triboelectric effect. The device harvests energy from airflow, causing a rotor to spin and repeatedly bring Teflon (electron-accepting material) into contact with aluminum foil electrodes (electron-donating material), generating charge through contact–separation. The mechanical structure was custom-designed and 3D-printed in PLA to ensure electrical isolation and precise alignment. Four stationary foil-wrapped electrodes were arranged around a central rotating shaft supported by a bearing. A conductive slip-contact was implemented to electrically reference the rotating shaft while allowing smooth rotation. The generated high-voltage, low-current AC signal was rectified using a 1N4001 diode and stored in a capacitor, enabling visible output through an LED and measurable voltage on a breadboard circuit.",
+    image: require('../assets/teng1.jpg'),
+    images: [
+      require('../assets/teng1.jpg'),
+      require('../assets/teng2.jpg')
+    ],
+    technologies: [],
+    achievements: [
+      '16V',
+      '65Hz'
     ],
     buttonText: ""
   },
