@@ -173,21 +173,5 @@ export const projects: Project[] = [
       }
     ],
     buttonText: ""
-  },
-  {
-    id: 6,
-    title: "TasteR",
-    description: "Food Discovery Web App - A web-based food discovery platform that lets users scan restaurant menus and explore dishes through a Tinder-style swipe interface with real images. Users swipe right to shortlist favorites and left to skip, helping them visually decide what to eat.",
-    image: require('../assets/TasteR.png'),
-    images: [
-      require('../assets/TasteR.png'),
-      require('../assets/TasteR-1.png'),
-      require('../assets/TasteR-2.png'),
-      require('../assets/TasteR-3.png'),
-      require('../assets/TasteR-4.png')
-    ],
-    technologies: [],
-    githubUrl: "https://github.com/Syinaric/TasteR/tree/main",
-    buttonText: "View Code"
   }
-]; 
+];

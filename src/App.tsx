@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import ProjectsList from './components/ProjectsList';
 import Blog from './components/Blog';
 import About from './components/About';
+import Experience from './components/Experience';
 import MobileMenu from './components/MobileMenu';
 import Spotlight from './components/Spotlight';
 import TargetCursor from './components/TargetCursor';
@@ -33,7 +34,7 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#blog' || hash === '#projects' || hash === '#about') {
+      if (hash === '#blog' || hash === '#projects' || hash === '#about' || hash === '#experience') {
         setCurrentSection(hash.slice(1));
       }
       // Update ping pong code page state
@@ -84,7 +85,7 @@ function App() {
       if ((isMac && event.metaKey && event.shiftKey && event.key === 'r') || 
           (!isMac && event.ctrlKey && event.shiftKey && event.key === 'r')) {
         event.preventDefault();
-        window.open('https://drive.google.com/file/d/11ha4q7IouBomj3Xe9BRaQOeHW4jmwEzd/view?usp=sharing', '_blank');
+        window.open('https://drive.google.com/file/d/1YvcjrFxJHk6EH1VouLGam7_pzL7KyXbU/view?usp=sharing', '_blank');
       }
 
       // Terminal shortcut: Ctrl+Shift+M (Windows) or Cmd+Shift+M (Mac)
@@ -140,8 +141,9 @@ function App() {
            isRoboticArmDetailsPage ? <RoboticArmDetails /> :
            isSumoBotCodePage ? <SumoBotCode /> :
            isLineFollowerDetailsPage ? <LineFollowerDetails /> : (
-            currentSection === 'blog' ? <Blog /> : 
-            currentSection === 'about' ? <About /> : 
+            currentSection === 'blog' ? <Blog /> :
+            currentSection === 'about' ? <About /> :
+            currentSection === 'experience' ? <Experience /> :
             <ProjectsList />
           )}
         </div>

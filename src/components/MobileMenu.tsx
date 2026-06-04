@@ -127,6 +127,27 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
             
             <button
               onClick={() => {
+                window.location.href = '#experience';
+                onClose();
+              }}
+              className={`w-full border p-3 text-white transition-colors duration-200 mb-3 cursor-target ${
+                currentSection === 'experience'
+                  ? 'bg-accent/20 border-accent'
+                  : 'bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center space-x-2 flex-1">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>Experience</span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => {
                 window.location.href = '#blog';
                 onClose();
               }}
@@ -151,7 +172,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, currentSection }) => {
             
             <button
               onClick={() => {
-                window.open('https://drive.google.com/file/d/11ha4q7IouBomj3Xe9BRaQOeHW4jmwEzd/view?usp=sharing', '_blank');
+                window.open('https://drive.google.com/file/d/1YvcjrFxJHk6EH1VouLGam7_pzL7KyXbU/view?usp=sharing', '_blank');
                 onClose();
               }}
               className="w-full border p-3 text-white transition-colors duration-200 cursor-target bg-dark-card border-dark-border hover:bg-accent/20 hover:border-accent"
