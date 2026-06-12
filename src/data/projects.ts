@@ -15,6 +15,15 @@ export interface Project {
   demoUrl?: string;
   externalUrl?: string;
   buttonText: string;
+  // Enables the interactive 3D hologram viewer for this project.
+  // Drop a GLB into public/models/ and set modelUrl (e.g. '/models/teng.glb')
+  // to replace the placeholder shape with the real model.
+  hologram?: {
+    shape: 'cube' | 'torus' | 'icosahedron';
+    modelUrl?: string;
+    // Orientation fix in radians [x, y, z] for models authored Z-up, etc.
+    rotation?: [number, number, number];
+  };
 }
 
 export const projects: Project[] = [
@@ -65,7 +74,11 @@ export const projects: Project[] = [
         type: "github"
       }
     ],
-    buttonText: ""
+    buttonText: "",
+    hologram: {
+      shape: 'cube'
+      // modelUrl: '/models/robotic-arm.glb'
+    }
   },
   {
     id: 7,
@@ -81,7 +94,11 @@ export const projects: Project[] = [
       '16V',
       '65Hz'
     ],
-    buttonText: ""
+    buttonText: "",
+    hologram: {
+      shape: 'icosahedron'
+      // modelUrl: '/models/teng.glb'
+    }
   },
   {
     id: 2,
@@ -95,7 +112,13 @@ export const projects: Project[] = [
       require('../assets/wired stator.jpg')
     ],
     technologies: [],
-    buttonText: ""
+    buttonText: "",
+    hologram: {
+      shape: 'torus',
+      modelUrl: '/models/bldc-motor.gltf',
+      // Model is authored Z-up; tip it upright.
+      rotation: [-Math.PI / 2, 0, 0]
+    }
   },
   {
     id: 3,
@@ -157,7 +180,13 @@ export const projects: Project[] = [
         type: "external"
       }
     ],
-    buttonText: "View Code"
+    buttonText: "View Code",
+    hologram: {
+      shape: 'cube',
+      modelUrl: '/models/pingpong-launcher.gltf',
+      // Authored Z-up; tip it upright.
+      rotation: [-Math.PI / 2, 0, 0]
+    }
   },
   {
     id: 8,

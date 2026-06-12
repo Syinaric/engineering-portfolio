@@ -178,7 +178,7 @@ const LineFollowerDetails: React.FC = () => {
               </div>
               
               <p className="text-gray-300 leading-relaxed">
-                This prompt-based approach makes the system <strong className="text-accent">universal</strong>—it can generate 
+                This prompt-based approach makes the system <strong className="text-accent">universal</strong>: it can generate
                 a GPS system for any track configuration without manual programming or track-specific code modifications.
               </p>
             </div>
@@ -193,7 +193,7 @@ const LineFollowerDetails: React.FC = () => {
               </p>
               <p className="text-gray-300 leading-relaxed">
                 This representation is extremely memory-efficient. For a typical track (~230 inches), the entire GPS system requires 
-                only ~230 bytes—well within Arduino R3's memory constraints. The array provides instant O(1) lookup: given a position 
+                only ~230 bytes, well within Arduino R3's memory constraints. The array provides instant O(1) lookup: given a position
                 in inches, the robot immediately knows what task (if any) it should perform at that location.
               </p>
             </div>
