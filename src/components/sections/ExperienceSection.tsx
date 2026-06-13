@@ -17,7 +17,7 @@ interface ExperienceEntry {
 const experiences: ExperienceEntry[] = [
   {
     id: 'skyjack',
-    role: 'Electrical Engineering Intern',
+    role: 'Electrical Engineering Co-op',
     organization: 'Skyjack (Linamar)',
     organizationUrl: 'https://www.skyjack.com/',
     date: 'May 2026 – Aug 2026',

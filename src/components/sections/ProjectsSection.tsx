@@ -247,10 +247,12 @@ const ProjectsSection: React.FC = () => {
             <br />
             <span className="text-accent">ARORA</span>
           </h1>
-          <p className="hero-line text-gray-400 text-base lg:text-lg max-w-xl mb-8">
-            I design and build things that move, spin, sense and generate:
-            robots, motors, nanogenerators and the software that drives them.
-          </p>
+          <div className="hero-line flex items-center gap-3 text-gray-400 mb-8">
+            <span className="w-8 h-[1px] bg-accent inline-block" />
+            <span className="font-mono text-xs lg:text-sm tracking-[0.25em]">
+              ELECTRICAL ENGINEERING CO-OP @ SKYJACK (LINAMAR)
+            </span>
+          </div>
           <div className="hero-line max-w-md text-left">
             <CurrentlyDoing />
           </div>
