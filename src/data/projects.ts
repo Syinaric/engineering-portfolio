@@ -76,8 +76,10 @@ export const projects: Project[] = [
     ],
     buttonText: "",
     hologram: {
-      shape: 'cube'
-      // modelUrl: '/models/robotic-arm.glb'
+      shape: 'cube',
+      modelUrl: '/models/aura.gltf',
+      // Authored Z-up; tip it upright.
+      rotation: [-Math.PI / 2, 0, 0]
     }
   },
   {
