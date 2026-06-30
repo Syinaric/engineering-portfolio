@@ -52,6 +52,23 @@ export const projects: Project[] = [
     buttonText: ""
   },
   {
+    id: 10,
+    title: "Custom Low-Dropout (LDO) Voltage Regulator PCB",
+    description: "Designed a custom 3.3V low-dropout (LDO) regulator PCB using the TPS7A02 series, supporting stable regulation from 5–12V input for embedded systems. Selected resistors and capacitors based on ESR, temperature coefficient, and stability requirements from datasheet analysis. Implemented proper schematic hierarchy including power ports, EN pull-up network, decoupling layout strategy, and grounding best practices for low-noise analog performance.",
+    image: require('../assets/PCB.png'),
+    images: [
+      require('../assets/PCB.png')
+    ],
+    technologies: ['Altium', 'PCB Design'],
+    buttonText: "",
+    hologram: {
+      shape: 'cube',
+      modelUrl: '/models/pcb.gltf',
+      // Authored Z-up; tip it upright.
+      rotation: [-Math.PI / 2, 0, 0]
+    }
+  },
+  {
     id: 1,
     title: "Autonomous Utility Robotic Arm for Farming (AURA FARM)",
     description: "Autonomous robotic arm system for agricultural automation with data-driven decision making. Integrates AgroMonitoring API for real-time sensor data, uses computer vision (OpenCV, YOLOv8) for object detection, and implements inverse kinematics for 6-DOF arm control. Automatically generates and executes tasks like irrigation, fertilization, harvesting, and field inspection based on real-time conditions.",

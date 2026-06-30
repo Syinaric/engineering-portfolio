@@ -12,6 +12,7 @@ interface ExperienceEntry {
   date?: string;
   location?: string;
   highlights?: string[];
+  skills?: string[];
 }
 
 const experiences: ExperienceEntry[] = [
@@ -28,6 +29,7 @@ const experiences: ExperienceEntry[] = [
       'Developed multiple Excel VBA macros that reduced testing by 3 hours and made results easier to view, analyze, and apply',
       'Designed a custom PCB to replace a machine harness on a boom lift, routing signals between a Speedgoat controller, ECU 6 I/O modules, 4 solenoid relays, and dual 300A motor driver',
     ],
+    skills: ['MATLAB', 'Simulink', 'Excel VBA', 'PCB Design', 'Altium', 'DraftSight', 'Soldering', 'Crimping', 'Wiring', 'Electrical Diagnostics'],
   },
   {
     id: 'uwasic',
@@ -41,6 +43,7 @@ const experiences: ExperienceEntry[] = [
       'Completed onboarding by designing a fully functional SPI peripheral in Verilog with CDC synchronization, register mapping, and PWM output control, verified using a custom cocotb testbench',
       'Working within the Tiny Tapeout ASIC design flow, producing GDS files using OpenLane and Yosys for potential physical fabrication',
     ],
+    skills: ['Verilog', 'SystemVerilog', 'cocotb', 'OpenLane', 'Yosys', 'Vivado', 'FPGAs', 'CDC', 'ASIC Design', 'Tiny Tapeout'],
   },
 ];
 
@@ -250,6 +253,24 @@ const ExperienceSection: React.FC = () => {
                           </li>
                         ))}
                       </ul>
+                    )}
+
+                    {exp.skills && exp.skills.length > 0 && (
+                      <div className="mt-6 pt-5 border-t border-dark-border">
+                        <div className="font-mono text-[10px] text-gray-500 tracking-[0.25em] mb-3">
+                          SKILLS
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {exp.skills.map((s, j) => (
+                            <span
+                              key={j}
+                              className="font-mono text-[11px] text-accent border border-accent/30 bg-accent/5 px-2.5 py-1 tracking-wide hover:border-accent/70 hover:bg-accent/10 transition-colors duration-200"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     )}
                   </article>
                 </div>

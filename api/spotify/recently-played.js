@@ -1,6 +1,6 @@
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
-const TOP_URL =
-  'https://api.spotify.com/v1/me/top/artists?limit=5&time_range=medium_term';
+const RECENT_URL =
+  'https://api.spotify.com/v1/me/player/recently-played?limit=1';
 
 export default async function handler(req, res) {
   const {
@@ -37,28 +37,32 @@ export default async function handler(req, res) {
     }
     const { access_token } = await tokenRes.json();
 
-    // 2. Fetch the top artists.
-    const topRes = await fetch(TOP_URL, {
+    // 2. Fetch the most recently played track.
+    const recentRes = await fetch(RECENT_URL, {
       headers: { Authorization: `Bearer ${access_token}` },
     });
-    if (!topRes.ok) {
-      throw new Error(`top artists failed: ${topRes.status}`);
+    if (!recentRes.ok) {
+      throw new Error(`recently played failed: ${recentRes.status}`);
     }
-    const data = await topRes.json();
+    const data = await recentRes.json();
 
-    const artists = (data.items || []).map((a) => ({
-      name: a.name,
-      genres: a.genres || [],
-      image: a.images?.[0]?.url || '',
-      url: a.external_urls?.spotify || '',
-    }));
+    const item = data.items?.[0];
+    const track = item
+      ? {
+          name: item.track?.name || '',
+          artist: (item.track?.artists || []).map((a) => a.name).join(', '),
+          image: item.track?.album?.images?.[0]?.url || '',
+          url: item.track?.external_urls?.spotify || '',
+          playedAt: item.played_at || '',
+        }
+      : null;
 
-    // Cache at the edge for an hour so we don't hammer Spotify on every visit.
+    // Recently-played changes often, so cache only briefly.
     res.setHeader(
       'Cache-Control',
-      's-maxage=3600, stale-while-revalidate=86400'
+      's-maxage=60, stale-while-revalidate=300'
     );
-    res.status(200).json({ artists });
+    res.status(200).json({ track });
   } catch (err) {
     res.status(502).json({ error: 'Failed to fetch Spotify data.' });
   }

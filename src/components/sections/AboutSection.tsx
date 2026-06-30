@@ -11,10 +11,19 @@ interface Artist {
   url: string;
 }
 
+interface Track {
+  name: string;
+  artist: string;
+  image: string;
+  url: string;
+  playedAt: string;
+}
+
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [artists, setArtists] = useState<Artist[] | null>(null);
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
+  const [lastTrack, setLastTrack] = useState<Track | null>(null);
 
   // Pull the top 5 from the Vercel serverless function (keeps secrets server-side).
   useEffect(() => {
@@ -31,6 +40,25 @@ const AboutSection: React.FC = () => {
       })
       .catch(() => {
         if (!cancelled) setStatus('error');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // The most recently played track. Best-effort; failures just hide the card.
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/spotify/recently-played')
+      .then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      })
+      .then((data) => {
+        if (!cancelled && data.track) setLastTrack(data.track);
+      })
+      .catch(() => {
+        /* silently hide the last-played card */
       });
     return () => {
       cancelled = true;
@@ -90,6 +118,53 @@ const AboutSection: React.FC = () => {
           This section is still being built, but in the meantime here's my music
           taste to give you a feel of who I am.
         </p>
+
+        {/* Last played track */}
+        {lastTrack && (
+          <div className="about-line mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent" />
+              </span>
+              <span className="font-mono text-xs tracking-[0.3em] text-gray-400">
+                LAST PLAYED ON SPOTIFY
+              </span>
+            </div>
+            <a
+              href={lastTrack.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target group flex items-center gap-4 bg-dark-card/60 backdrop-blur-sm border border-dark-border hover:border-accent/60 p-3 transition-colors duration-300 max-w-xl"
+            >
+              <div className="w-16 h-16 overflow-hidden bg-dark-border shrink-0 ring-1 ring-dark-border group-hover:ring-accent/60 transition-all duration-300">
+                {lastTrack.image && (
+                  <img
+                    src={lastTrack.image}
+                    alt={lastTrack.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-white font-semibold truncate group-hover:text-accent transition-colors duration-200">
+                  {lastTrack.name}
+                </div>
+                <div className="text-gray-400 text-sm truncate">
+                  {lastTrack.artist}
+                </div>
+              </div>
+              <svg
+                className="w-5 h-5 text-gray-600 group-hover:text-accent shrink-0 transition-colors duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="square" strokeWidth={2} d="M14 5l7 7-7 7M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        )}
 
         {/* Spotify top 5 */}
         <div className="about-line flex items-center gap-3 mb-8">
