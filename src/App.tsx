@@ -356,15 +356,29 @@ function App() {
           </h2>
           <div className="mt-6 space-y-4 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
             <p>
-              I'm an engineering student who likes building things that bridge hardware
-              and software, from custom motors and PCBs to autonomous robots and the
-              code that drives them. Most of my projects start as a question about how
-              something physically works, and end somewhere on a breadboard or a print bed.
+              I'm passionate about creating technology that makes life smarter, more
+              sustainable, and more connected. I'm particularly interested in
+              semiconductor manufacturing and advanced lithography, computer
+              architecture, FPGAs, and ASICs, and how these technologies enable
+              high-performance computing, AI, and automation at scale. I enjoy working
+              across robotics, AI, PCB design, and embedded systems, combining hardware
+              and software to turn ideas into functional systems. From circuit and PCB
+              design to firmware, RTL, and mechanical iteration, I'm drawn to projects
+              that sit at the intersection of physics, electronics, and real-world
+              impact.
             </p>
             <p>
-              When I'm not building, I'm usually swimming, walking my dog, playing
-              badminton, learning KiCad, or waiting for a 3D print to finish with a
-              third coffee in hand.
+              Always happy to connect and chat about chips, hardware, or anything at
+              the intersection of semiconductors and computing, feel free to reach out!
+            </p>
+            <p className="text-sm">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-500">
+                Interests
+              </span>
+              <br />
+              Semiconductor Technology, Computer Architecture, FPGA Design, ASIC
+              Design, Advanced Manufacturing, Robotics, PCB Design, Embedded Systems,
+              CAD
             </p>
           </div>
           <LastPlayed />
