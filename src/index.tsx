@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Apply the saved theme (defaulting to dark) before first paint to avoid a flash.
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme !== 'light') {
+  document.documentElement.classList.add('dark');
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

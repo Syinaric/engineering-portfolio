@@ -4,67 +4,65 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: 'Inter', system-ui, sans-serif;
+    background-color: #fafafa;
+    color: #171717;
+  }
+
+  .dark body {
     background-color: #0a0a0a;
-    color: #ffffff;
-    cursor: none; /* Hide default cursor */
+    color: #ededed;
   }
 
   ::selection {
-    background: rgba(162, 89, 255, 0.4);
-    color: #ffffff;
+    background: rgba(140, 140, 140, 0.35);
   }
 
-  /* Sharp-cornered purple scrollbar */
+  /* Neutral grey scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
-    border: 2px solid #0a0a0a;
+    background: #c4c4c4;
+    border: 2px solid transparent;
+    background-clip: padding-box;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #a259ff;
-  }
-}
-
-@keyframes holo-in {
-  from {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .dark ::-webkit-scrollbar-thumb {
+    background: #333;
+    border: 2px solid transparent;
+    background-clip: padding-box;
   }
 }
 
-.animate-holo-in {
-  animation: holo-in 0.25s ease-out;
-}
-
-@layer components {
-  .card-hover {
-    @apply transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-1;
-  }
-
-  .social-link {
-    @apply transition-colors duration-200 hover:text-accent;
-  }
-
-  /* Hide default cursor on all interactive elements */
-  .cursor-target {
-    cursor: none !important;
-  }
-
-  /* Hide cursor on buttons, links, and other interactive elements */
-  button, a, [role="button"], [tabindex] {
-    cursor: none !important;
-  }
-
+/* Softly fades the background effect out behind the centered text column.
+   Fully transparent across the content width, blending back in over ~300px
+   on each side, no hard edges. */
+.dither-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black,
+    black calc(50% - 680px),
+    transparent calc(50% - 380px),
+    transparent calc(50% + 380px),
+    black calc(50% + 680px),
+    black
+  );
+  mask-image: linear-gradient(
+    to right,
+    black,
+    black calc(50% - 680px),
+    transparent calc(50% - 380px),
+    transparent calc(50% + 380px),
+    black calc(50% + 680px),
+    black
+  );
 }
