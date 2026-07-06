@@ -114,7 +114,8 @@ const projects: ProjectInfo[] = [
       require('./assets/Sumobot.jpeg'),
     ],
     description:
-      'A manually driven Arduino sumo robot designed to push opponent bots out of the ring, built for precise control and robust competition.',
+      'A manually driven Arduino sumo robot designed to push opponent bots out of the ring, built for precise control and robust competition. Came in first place in the sumo category and second overall.',
+    achievements: ['1st Place Sumo Category', '2nd Overall'],
   },
   {
     title: 'Robot Ping Pong Opponent',
