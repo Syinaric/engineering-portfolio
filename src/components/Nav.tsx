@@ -5,7 +5,7 @@ interface NavProps {
 }
 
 const RESUME_URL =
-  'https://drive.google.com/file/d/1YvcjrFxJHk6EH1VouLGam7_pzL7KyXbU/view?usp=sharing';
+  'https://drive.google.com/file/d/1vua907uaZKH0VbdhqH6Ll4wxAYD9j2BW/view?usp=sharing';
 
 export const socialLinks = [
   {
