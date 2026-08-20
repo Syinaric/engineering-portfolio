@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import Dither from './components/Dither';
 import ProjectModal, { ProjectInfo } from './components/ProjectModal';
@@ -73,9 +73,6 @@ const projects: ProjectInfo[] = [
     details:
       'Nano Design Days 2025: Designed and built a wind-driven Triboelectric Nanogenerator (TENG) capable of converting mechanical energy into electrical energy using the triboelectric effect. The device harvests energy from airflow, causing a rotor to spin and repeatedly bring Teflon into contact with aluminum foil electrodes, generating charge through contact-separation. The mechanical structure was custom-designed and 3D-printed in PLA to ensure electrical isolation and precise alignment. A conductive slip-contact electrically references the rotating shaft while allowing smooth rotation, and the generated high-voltage AC signal was rectified with a 1N4001 diode and stored in a capacitor, driving an LED and measurable voltage on a breadboard circuit.',
     achievements: ['16V', '65Hz'],
-    hologram: {
-      shape: 'icosahedron',
-    },
   },
   {
     title: 'Custom BLDC Motor',
@@ -149,6 +146,32 @@ const projects: ProjectInfo[] = [
     links: [{ label: 'Code', url: 'https://github.com/Syinaric/NE111-project' }],
   },
 ];
+
+/** Experience write-up, linked from the header rather than the project list. */
+const uwasic: ProjectInfo = {
+  title: 'Digital Design at UWASIC',
+  images: [
+    require('./assets/ethernet1.png'),
+    require('./assets/ethernet2.png'),
+  ],
+  description:
+    "Building and verifying a modular 10 Gb/s Ethernet physical coding sublayer with Waterloo's ASIC design team. My work includes synthesizable SystemVerilog RTL, 64b/66b encoding, and self-checking verification.",
+  details:
+    "Digital Design member at UWASIC, the University of Waterloo's ASIC design team, building and verifying a modular 10 Gb/s Ethernet physical coding sublayer (PCS) in synthesizable SystemVerilog. The PCS sits between XGMII and the SerDes, and is split into independently simulated blocks: 64b/66b encode and decode, scrambling and descrambling, the TX and RX gearboxes, and block synchronization that drives bit slip until the RX path locks onto 66-bit block boundaries. I own verification for the entire receive path, writing self-checking testbenches that drive stimulus, model the expected result, and assert against the RTL so mismatches fail the run automatically instead of being caught by eye in a waveform viewer. I have also contributed RTL for parts of the design.",
+  links: [{ label: 'Code', url: 'https://github.com/UW-ASIC/10G-Ethernet-Parser' }],
+};
+
+/** Everything reachable as its own page, i.e. everything with a URL. */
+const pages: ProjectInfo[] = [...projects, uwasic];
+
+const slugify = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+/** Resolves the current URL hash to a page, or null for the home view. */
+const pageFromHash = (): ProjectInfo | null => {
+  const slug = window.location.hash.replace(/^#\/?/, '');
+  return pages.find((page) => slugify(page.title) === slug) ?? null;
+};
 
 interface Track {
   name: string;
@@ -244,7 +267,34 @@ const ThemeToggle: React.FC<{ dark: boolean; toggle: () => void }> = ({ dark, to
 
 function App() {
   const { dark, toggle } = useTheme();
-  const [openProject, setOpenProject] = useState<ProjectInfo | null>(null);
+  const [openProject, setOpenProject] = useState<ProjectInfo | null>(pageFromHash);
+  const initialized = useRef(false);
+
+  // Each page gets a history entry so the browser's back/forward buttons move
+  // between home and a project instead of leaving the site. A deep link is
+  // rewritten as home + push, so there is always a home entry to go back to.
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
+      const landed = pageFromHash();
+      if (landed) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        window.history.pushState(null, '', `#${slugify(landed.title)}`);
+      }
+    }
+    const onPopState = () => setOpenProject(pageFromHash());
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  const openPage = (page: ProjectInfo) => {
+    window.history.pushState(null, '', `#${slugify(page.title)}`);
+    setOpenProject(page);
+  };
+
+  // Closing goes back so the modal and the history stack stay in sync; the
+  // popstate handler above is what actually clears the open page.
+  const closePage = () => window.history.back();
 
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
@@ -271,8 +321,15 @@ function App() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Mahir Arora</h1>
           <p className="mt-4 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
             Nanotechnology Engineering student at the University of Waterloo, and an
-            incoming Electrical Engineering Co-op at Skyjack (Linamar). Currently a
-            Digital Design member at UWASIC, working on ASIC design in Verilog.
+            Electrical Engineering Co-op at Skyjack (Linamar). Currently a Digital
+            Design member at{' '}
+            <button
+              onClick={() => openPage(uwasic)}
+              className="font-bold text-neutral-900 underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-900 dark:text-neutral-100 dark:decoration-neutral-500 dark:hover:decoration-neutral-100"
+            >
+              UWASIC
+            </button>
+            , working on ASIC design in Verilog.
           </p>
 
           {/* Links, in one sentence */}
@@ -307,11 +364,11 @@ function App() {
                 </span>
                 <div
                   className="group cursor-pointer"
-                  onClick={() => setOpenProject(project)}
+                  onClick={() => openPage(project)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setOpenProject(project);
+                      openPage(project);
                     }
                   }}
                   role="button"
@@ -391,7 +448,7 @@ function App() {
       </main>
 
       {openProject && (
-        <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />
+        <ProjectModal project={openProject} onClose={closePage} />
       )}
     </div>
   );
