@@ -16,6 +16,16 @@ const links = [
 
 const projects: ProjectInfo[] = [
   {
+    title: 'Systolic Array GEMM Engine',
+    description:
+      'An 8×8 output-stationary systolic array for INT8 matrix multiply, written in synthesizable SystemVerilog and verified with cocotb testbenches checked against Python golden models, with a GitHub Actions regression that sweeps parameters on every push.',
+    details:
+      'A hardware GEMM (general matrix multiply) accelerator built from the processing element up. Each PE performs one signed INT8 multiply-accumulate per cycle into a 32-bit accumulator, passing operands east and south to its neighbours, and holds its finished result in a shadow register so a new tile can start while the previous one is still being read out. The PEs are tiled into a parameterized N×N mesh (currently 8×8) wrapped in a skew network of delay lines, which staggers each row and column of operands by the right number of cycles so every MAC lands on the correct pair, and fans the first/last tile tags out to each row\'s arrival time. Results leave through a column-wise drain chain rather than a wide combinational readout. Verification is done in cocotb: Python golden models of the PE, the delay line, and the full mesh generate expected results, and self-checking testbenches assert against the RTL so a mismatch fails the run instead of hiding in a waveform. A GitHub Actions workflow runs the whole regression under Icarus Verilog on every push, including parameter sweeps across array and delay depths. Ongoing work is the control FSM for tile sequencing and an INT32 to INT8 requantization stage.',
+    links: [
+      { label: 'Code', url: 'https://github.com/Syinaric/Systolic-Array-GEMM-Engine' },
+    ],
+  },
+  {
     title: 'Line Follower Robot',
     images: [
       require('./assets/UTRA.jpg'),
