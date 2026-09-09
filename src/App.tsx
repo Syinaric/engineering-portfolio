@@ -4,7 +4,7 @@ import Dither from './components/Dither';
 import ProjectModal, { ProjectInfo } from './components/ProjectModal';
 
 const RESUME_URL =
-  'https://drive.google.com/file/d/1vua907uaZKH0VbdhqH6Ll4wxAYD9j2BW/view?usp=sharing';
+  'https://drive.google.com/file/d/1MQApxz9isLBjM0HETjNrHXAGl9kylzXd/view?usp=sharing';
 
 const links = [
   { label: 'LinkedIn', url: 'https://www.linkedin.com/in/mahir-arora' },
