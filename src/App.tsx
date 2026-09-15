@@ -17,6 +17,9 @@ const links = [
 const projects: ProjectInfo[] = [
   {
     title: 'Systolic Array GEMM Engine',
+    images: [
+      require('./assets/systolic-array.png'),
+    ],
     description:
       'An 8×8 output-stationary systolic array for INT8 matrix multiply, written in synthesizable SystemVerilog and verified with cocotb testbenches checked against Python golden models, with a GitHub Actions regression that sweeps parameters on every push.',
     details:
@@ -330,16 +333,16 @@ function App() {
         <header>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Mahir Arora</h1>
           <p className="mt-4 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-            Nanotechnology Engineering student at the University of Waterloo, and an
-            Electrical Engineering Co-op at Skyjack (Linamar). Currently a Digital
-            Design member at{' '}
+            Nanotechnology Engineering student at the University of Waterloo. Currently
+            a Digital Design member at{' '}
             <button
               onClick={() => openPage(uwasic)}
               className="font-bold text-neutral-900 underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-900 dark:text-neutral-100 dark:decoration-neutral-500 dark:hover:decoration-neutral-100"
             >
               UWASIC
             </button>
-            , working on ASIC design in Verilog.
+            , working on ASIC design in Verilog. Prev. Electrical Engineering Co-op at
+            Skyjack (Linamar).
           </p>
 
           {/* Links, in one sentence */}
