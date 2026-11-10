@@ -87,7 +87,7 @@ const PDFPortfolio: React.FC = () => {
           <div className="mt-6 flex justify-center gap-6 text-sm text-gray-400 flex-wrap">
             <span>mahirarora.ca</span>
             <span>•</span>
-            <span>mahirarora21@gmail.com</span>
+            <span>m59arora@uwaterloo.ca</span>
             <span>•</span>
             <span>linkedin.com/in/mahir-arora</span>
             <span>•</span>

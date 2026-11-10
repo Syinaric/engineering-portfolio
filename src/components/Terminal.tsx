@@ -18,7 +18,7 @@ const Terminal: React.FC<TerminalProps> = ({ onExit }) => {
     'projects': 'Current projects: BotAutonomy (smart plant care), Sumo Bot (Arduino-driven), Robot Ping Pong Opponent (ball launcher), TasteR (food discovery app)',
     'blog': 'Latest posts: Motor Research (July 15, 2025), Motor Prototype Assembly (Aug 5, 2025)',
     'skills': 'Technologies: Arduino, React, TypeScript, Tailwind CSS, Python, CAD, 3D Printing, Electronics, Machine Learning',
-    'contact': 'Email: mahirarora21@gmail.com | LinkedIn: linkedin.com/in/mahir-arora | GitHub: github.com/Syinaric',
+    'contact': 'Email: m59arora@uwaterloo.ca | LinkedIn: linkedin.com/in/mahir-arora | GitHub: github.com/Syinaric',
     'clear': () => setOutput([]),
     'exit': () => onExit()
   };

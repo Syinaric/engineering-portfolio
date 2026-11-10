@@ -16,6 +16,16 @@ export interface ProjectInfo {
   // Longer write-up shown in the detail view; falls back to description.
   details?: string;
   images?: string[];
+  // Company logo, shown beside the title in the Experience list.
+  logo?: string;
+  // Filter group on the home page; projects without one go under Robotics.
+  category?: 'ASIC' | 'Robotics';
+  // Bulleted breakdown shown in the detail view, one block per sub-project.
+  sections?: {
+    heading?: string;
+    points: string[];
+    link?: { label: string; url: string };
+  }[];
   achievements?: string[];
   links?: { label: string; url: string }[];
   hologram?: HologramConfig;
@@ -219,6 +229,31 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
       <p className="mb-6 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
         {project.details ?? project.description}
       </p>
+
+      {project.sections?.map((section, i) => (
+        <div key={section.heading ?? i} className="mb-6">
+          {section.heading && (
+            <h3 className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+              {section.heading}
+            </h3>
+          )}
+          <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-neutral-600 marker:text-neutral-400 dark:text-neutral-400 dark:marker:text-neutral-600">
+            {section.points.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+          {section.link && (
+            <a
+              href={section.link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block text-sm font-medium text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition-colors hover:decoration-neutral-900 dark:text-neutral-100 dark:decoration-neutral-600 dark:hover:decoration-neutral-100"
+            >
+              {section.link.label} ↗
+            </a>
+          )}
+        </div>
+      ))}
 
       {project.achievements && project.achievements.length > 0 && (
         <div className="mb-6">

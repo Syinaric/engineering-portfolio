@@ -4,19 +4,19 @@ import Dither from './components/Dither';
 import ProjectModal, { ProjectInfo } from './components/ProjectModal';
 
 const RESUME_URL =
-  'https://drive.google.com/file/d/1MQApxz9isLBjM0HETjNrHXAGl9kylzXd/view?usp=sharing';
+  'https://drive.google.com/file/d/1xC6o2sthBAlpdtKQiLXJ1h2jSHA-UkNi/view?usp=sharing';
 
 const links = [
   { label: 'LinkedIn', url: 'https://www.linkedin.com/in/mahir-arora' },
   { label: 'GitHub', url: 'https://github.com/Syinaric' },
-  { label: 'Instagram', url: 'https://www.instagram.com/mahirarora21/' },
-  { label: 'email', url: 'mailto:mahirarora21@gmail.com' },
+  { label: 'email', url: 'mailto:m59arora@uwaterloo.ca' },
   { label: 'résumé', url: RESUME_URL },
 ];
 
 const projects: ProjectInfo[] = [
   {
     title: 'Systolic Array GEMM Engine',
+    category: 'ASIC',
     images: [
       require('./assets/systolic-array.png'),
     ],
@@ -27,6 +27,15 @@ const projects: ProjectInfo[] = [
     links: [
       { label: 'Code', url: 'https://github.com/Syinaric/Systolic-Array-GEMM-Engine' },
     ],
+  },
+  {
+    title: 'SPI-Controlled PWM Peripheral',
+    category: 'ASIC',
+    description:
+      'An SPI Mode 0 peripheral in Verilog with memory-mapped control of 16 digital outputs and 16 PWM channels, built for the Tiny Tapeout flow and verified with cocotb testbenches.',
+    details:
+      'An SPI Mode 0 peripheral with memory-mapped control of 16 digital outputs and 16 PWM channels, built in Verilog for the Tiny Tapeout ASIC flow. The SPI inputs (SCLK, COPI, nCS) come from a different clock domain, so each passes through a multi-stage synchronizer before edge detection on SCLK and nCS. Each 16-bit transaction shifts into a register on SCLK rising edges: one read/write bit, a 7-bit address, and 8 bits of data. The write is committed only on the nCS rising edge, and only if exactly 16 bits arrived, so partial or noisy transactions are dropped. Five registers control output enables for both 8-bit banks, PWM enables for both banks, and a shared PWM duty cycle from 0% to 100%, with the PWM running at about 3 kHz from a 10 MHz clock. Verification is done in cocotb, with tests that drive real SPI transactions and check register writes, PWM frequency, and duty cycle, run by GitHub Actions on every push alongside the GDS and FPGA builds.',
+    links: [{ label: 'Code', url: 'https://github.com/Syinaric/onboarding-start' }],
   },
   {
     title: 'Line Follower Robot',
@@ -147,35 +156,71 @@ const projects: ProjectInfo[] = [
       rotation: [-Math.PI / 2, 0, 0],
     },
   },
-  {
-    title: 'Statistical Distribution Analysis Tool',
-    images: [
-      require('./assets/NE111.png'),
-    ],
-    description:
-      'A Streamlit application for fitting statistical distributions to numerical datasets with interactive visualizations, supporting random generation, manual entry, and CSV uploads (Python, SciPy, Matplotlib).',
-    details:
-      'Data analysis application for fitting statistical distributions to numerical datasets with interactive visualizations. Supports multiple input methods including random generation, manual entry, and CSV uploads. Built with Python, Streamlit, Matplotlib, and SciPy for the NE111 course, demonstrating statistical analysis and scientific computing in engineering. Deployed on Streamlit Community Cloud.',
-    links: [{ label: 'Code', url: 'https://github.com/Syinaric/NE111-project' }],
-  },
 ];
 
-/** Experience write-up, linked from the header rather than the project list. */
 const uwasic: ProjectInfo = {
   title: 'Digital Design at UWASIC',
+  logo: require('./assets/uwasic-logo.png'),
   images: [
     require('./assets/ethernet1.png'),
     require('./assets/ethernet2.png'),
   ],
   description:
-    "Building and verifying a modular 10 Gb/s Ethernet physical coding sublayer with Waterloo's ASIC design team. My work includes synthesizable SystemVerilog RTL, 64b/66b encoding, and self-checking verification.",
+    "Designing and verifying hardware with Waterloo's ASIC design team: a 10 Gb/s Ethernet PCS and TinyTracer, a ray-tracing chip for Tiny Tapeout.",
   details:
-    "Digital Design member at UWASIC, the University of Waterloo's ASIC design team, building and verifying a modular 10 Gb/s Ethernet physical coding sublayer (PCS) in synthesizable SystemVerilog. The PCS sits between XGMII and the SerDes, and is split into independently simulated blocks: 64b/66b encode and decode, scrambling and descrambling, the TX and RX gearboxes, and block synchronization that drives bit slip until the RX path locks onto 66-bit block boundaries. I own verification for the entire receive path, writing self-checking testbenches that drive stimulus, model the expected result, and assert against the RTL so mismatches fail the run automatically instead of being caught by eye in a waveform viewer. I have also contributed RTL for parts of the design.",
-  links: [{ label: 'Code', url: 'https://github.com/UW-ASIC/10G-Ethernet-Parser' }],
+    "Digital Design member at UWASIC, the University of Waterloo's ASIC design team, working in SystemVerilog and cocotb.",
+  sections: [
+    {
+      heading: '10G Ethernet Parser',
+      points: [
+        'A modular 10 Gb/s Ethernet physical coding sublayer (PCS) in synthesizable SystemVerilog, sitting between XGMII and the SerDes',
+        'Built from independently simulated blocks: 64b/66b encode/decode, scrambling, TX/RX gearboxes, and block sync that bit-slips until RX locks onto 66-bit boundaries',
+        'I own verification for the entire receive path',
+        'Wrote self-checking testbenches that model the expected output and assert against the RTL, so mismatches fail the run automatically',
+        'Also contributed RTL for parts of the design',
+      ],
+      link: { label: 'Ethernet Parser code', url: 'https://github.com/UW-ASIC/10G-Ethernet-Parser' },
+    },
+    {
+      heading: 'TinyTracer (Ray Tracer)',
+      points: [
+        'TinyTracer is a small ray-tracing chip for Tiny Tapeout: a host sends a 3D scene over UART and the chip renders it pixel by pixel',
+        'My role so far is verification: I am writing the top-level cocotb testbench for the functional units (FU Control plus the ALU, multiplier, and CORDIC)',
+        'It checks that operands come from the right registers, results reach the right destination, and each unit meets its cycle latency',
+        'It also checks that the ALU and multiplier never stall while CORDIC is busy, nothing hangs or writes stray values, and reset behaves',
+        'Stress tests run 600 random macro-ops and 5,000 back-to-back ALU/multiplier ops, checking cycle counts against the design spec',
+      ],
+      link: {
+        label: 'Ray Tracer branch',
+        url: 'https://github.com/UW-ASIC/TinyTracer/tree/fu-control-tb',
+      },
+    },
+  ],
 };
 
+const skyjack: ProjectInfo = {
+  title: 'Electrical Engineering Co-op at Skyjack (Linamar)',
+  logo: require('./assets/skyjack-logo.png'),
+  description:
+    'Tested and debugged machine dashboards, automated dashboard creation in MATLAB/Simulink, and designed a custom PCB to replace a boom lift wiring harness.',
+  details: 'Guelph, ON · May – Aug 2026',
+  sections: [
+    {
+      points: [
+        'Ran and debugged truth table and sequence tests on machine dashboards, tracing failures to dashboard logic, display behavior, or test outputs',
+        'Wrote a MATLAB script for Simulink that automated manual dashboard creation, saving 8 hours per machine',
+        'Built Excel VBA macros that cut 3 hours of testing and made results easier to analyze',
+        'Designed a custom PCB to replace a boom lift wiring harness, routing signals between a Speedgoat controller, ECU 6 I/O modules, 4 solenoid relays, and a dual 300A motor driver',
+      ],
+    },
+  ],
+  links: [{ label: 'Skyjack', url: 'https://www.skyjack.com/' }],
+};
+
+const experience: ProjectInfo[] = [uwasic, skyjack];
+
 /** Everything reachable as its own page, i.e. everything with a URL. */
-const pages: ProjectInfo[] = [...projects, uwasic];
+const pages: ProjectInfo[] = [...projects, ...experience];
 
 const slugify = (title: string) =>
   title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -278,10 +323,18 @@ const ThemeToggle: React.FC<{ dark: boolean; toggle: () => void }> = ({ dark, to
   </button>
 );
 
+const projectFilters = ['All', 'ASIC', 'Robotics'] as const;
+type ProjectFilter = (typeof projectFilters)[number];
+
 function App() {
   const { dark, toggle } = useTheme();
   const [openProject, setOpenProject] = useState<ProjectInfo | null>(pageFromHash);
   const initialized = useRef(false);
+  const [filter, setFilter] = useState<ProjectFilter>('All');
+  const filteredProjects =
+    filter === 'All'
+      ? projects
+      : projects.filter((p) => (p.category ?? 'Robotics') === filter);
 
   // Each page gets a history entry so the browser's back/forward buttons move
   // between home and a project instead of leaving the site. A deep link is
@@ -341,8 +394,14 @@ function App() {
             >
               UWASIC
             </button>
-            , working on ASIC design in Verilog. Prev. Electrical Engineering Co-op at
-            Skyjack (Linamar).
+            , working on ASIC design in Verilog. Prev. Electrical Engineering Co-op at{' '}
+            <button
+              onClick={() => openPage(skyjack)}
+              className="font-bold text-neutral-900 underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-900 dark:text-neutral-100 dark:decoration-neutral-500 dark:hover:decoration-neutral-100"
+            >
+              Skyjack (Linamar)
+            </button>
+            .
           </p>
 
           {/* Links, in one sentence */}
@@ -364,19 +423,43 @@ function App() {
           </p>
         </header>
 
-        {/* Projects */}
-        <section className="mt-16">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-            Projects
-          </h2>
+        {[
+          { heading: 'Experience', items: experience, filters: false },
+          { heading: 'Projects', items: filteredProjects, filters: true },
+        ].map(({ heading, items, filters }) => (
+        <section key={heading} className="mt-16">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              {heading}
+            </h2>
+            {filters && (
+              <div role="tablist" aria-label="Filter projects" className="flex gap-2">
+                {projectFilters.map((f) => (
+                  <button
+                    key={f}
+                    role="tab"
+                    aria-selected={filter === f}
+                    onClick={() => setFilter(f)}
+                    className={`border px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors ${
+                      filter === f
+                        ? 'border-neutral-900 bg-neutral-900 text-neutral-50 dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900'
+                        : 'border-neutral-300 text-neutral-500 hover:border-neutral-500 hover:text-neutral-900 dark:border-neutral-700 dark:hover:border-neutral-500 dark:hover:text-neutral-100'
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <ol className="mt-6 space-y-8">
-            {projects.map((project, i) => (
+            {items.map((project, i) => (
               <li key={project.title} className="flex gap-4">
                 <span className="mt-1 w-6 shrink-0 font-mono text-sm text-neutral-400 dark:text-neutral-600">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div
-                  className="group cursor-pointer"
+                  className="group min-w-0 flex-1 cursor-pointer"
                   onClick={() => openPage(project)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -387,14 +470,23 @@ function App() {
                   role="button"
                   tabIndex={0}
                 >
-                  <h3 className="text-lg font-semibold tracking-tight underline-offset-4 group-hover:underline">
-                    {project.title}
-                    {project.hologram && (
-                      <span className="ml-2 align-middle font-mono text-[10px] font-normal tracking-[0.2em] text-neutral-400 dark:text-neutral-600">
-                        3D
-                      </span>
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-lg font-semibold tracking-tight underline-offset-4 group-hover:underline">
+                      {project.title}
+                      {project.hologram && (
+                        <span className="ml-2 align-middle font-mono text-[10px] font-normal tracking-[0.2em] text-neutral-400 dark:text-neutral-600">
+                          3D
+                        </span>
+                      )}
+                    </h3>
+                    {project.logo && (
+                      <img
+                        src={project.logo}
+                        alt=""
+                        className="h-9 max-w-[110px] shrink-0 rounded-md bg-white object-contain p-1 ring-1 ring-neutral-200 dark:ring-neutral-800"
+                      />
                     )}
-                  </h3>
+                  </div>
                   <p className="mt-1.5 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                     {project.description}
                   </p>
@@ -419,6 +511,7 @@ function App() {
             ))}
           </ol>
         </section>
+        ))}
 
         {/* About */}
         <section className="mt-16">
