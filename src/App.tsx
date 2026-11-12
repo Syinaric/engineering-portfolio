@@ -15,6 +15,20 @@ const links = [
 
 const projects: ProjectInfo[] = [
   {
+    title: 'Neural Network Pruning with QAOA (Qismet)',
+    category: 'Machine Learning',
+    images: [
+      require('./assets/qismet-hw100.png'),
+      require('./assets/qismet-speed.png'),
+    ],
+    description:
+      'Research for IBM Qiskit Fall Fest 2026 on finding a smaller subnetwork inside a neural network that keeps its accuracy, by fitting the retraining loss as a quadratic over neuron inclusion bits and solving it with a QAOA circuit on the IBM Fez quantum computer.',
+    details:
+      'Pruning removes neurons from a trained network, but choosing which ones to remove normally means retraining every candidate, and the number of candidates explodes with network size. Qismet retrains only a small sample of pruned networks, then fits the retraining loss as a quadratic function of the binary inclusion/exclusion of each neuron group (a QUBO). That function is transformed into a quantum problem in IBM Qiskit: the loss is encoded as a cost operator acting on qubits that represent every possible pruned network at once, and a mixing operator is applied so that high-cost states destructively interfere and low-cost states constructively interfere. Measuring the circuit yields candidate subnetworks, and the most promising one is retrained. Run on the ibm_fez quantum computer, the search was significantly faster than classical brute force or random sampling: a 16-qubit version found a pick in the top 0.7% of all 12,870 possible networks in about 2 minutes versus 1.9 hours of brute force, and a pre-registered 100-qubit run on a 784 → 400 → 10 network produced pruned networks with half the neurons that beat the full network on the test set in every seed.',
+    achievements: ['56× faster than brute force', '100 qubits on ibm_fez', '84.4% accuracy with half the neurons'],
+    links: [{ label: 'Code', url: 'https://github.com/Syinaric/Qismet' }],
+  },
+  {
     title: 'Systolic Array GEMM Engine',
     category: 'ASIC',
     images: [
@@ -323,7 +337,7 @@ const ThemeToggle: React.FC<{ dark: boolean; toggle: () => void }> = ({ dark, to
   </button>
 );
 
-const projectFilters = ['All', 'ASIC', 'Robotics'] as const;
+const projectFilters = ['All', 'ASIC', 'Machine Learning', 'Robotics'] as const;
 type ProjectFilter = (typeof projectFilters)[number];
 
 function App() {

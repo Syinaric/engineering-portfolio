@@ -19,7 +19,7 @@ export interface ProjectInfo {
   // Company logo, shown beside the title in the Experience list.
   logo?: string;
   // Filter group on the home page; projects without one go under Robotics.
-  category?: 'ASIC' | 'Robotics';
+  category?: 'ASIC' | 'Machine Learning' | 'Robotics';
   // Bulleted breakdown shown in the detail view, one block per sub-project.
   sections?: {
     heading?: string;
